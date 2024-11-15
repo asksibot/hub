@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asksibot - Pictogram Search Assistant</title>
+    <!-- Include Axios from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <!-- Structured Data -->
+    <script type="application/ld+json" defer>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Asksibot - Pictogram Search Assistant",
+      "description": "A tool to help occupational therapy professionals search and utilize pictographic symbols.",
+      "url": "https://yourwebsite.com",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+    <!-- Google Analytics (Replace 'YOUR_TRACKING_ID' with actual ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'YOUR_TRACKING_ID');
+    </script>
+    
+    <style>
+        /* Reset some default styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #fdb201;
+            --secondary-color: #1d1e20;
+            --background-color: #f4f4f4;
+            --header-bg-color: #d3d3d3;
+            --text-color: #333;
+            --subtext-color: #555;
+            --button-text-color: #000;
+            --button-hover-bg-color: #1d1e20;
+            --button-hover-text-color: #fff;
+            --modal-bg-color: rgba(0,0,0,0.5);
+            --modal-content-bg: #fefefe;
+            --error-color: red;
+            --success-color: green;
+        }
+
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            text-align: center;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--header-bg-color);
+            padding: 20px 40px;
+            width: 100%;
+            position: relative; /* To position the button */
+        }
+
+        header img {
+            width: 70px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* "How to Use" Button Styles */
+        #openInstructionsBtn {
+            position: absolute;
+            right: 40px;
+            top: 20px;
+            padding: 5px 10px;
+            background-color: var(--primary-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9em;
+        }
+
+        #openInstructionsBtn:hover {
+            background-color: var(--button-hover-bg-color);
+            color: var(--button-hover-text-color);
+        }
+
+        .subtext {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Navigation styles */
+        nav {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            margin: 5px 10px;
+            color: var(--button-text-color);
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Content styles */
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .content h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative; /* To position additional buttons if needed */
+        }
+
+        /* Form styles */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            padding: 0 10px;
+            font-weight: bold;
+        }
+
+        .instruction {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        /* Radio Button Styles for Topics */
+        .options-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .options-list label {
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+            cursor: pointer;
+        }
+
+        .options-list input[type="radio"],
+        .options-list input[type="checkbox"] {
+            margin-right: 5px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        /* Textarea Styles */
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        /* Button styles */
+        button[type="submit"], .results button, #createSlideshowBtn, .download-button, .how-to-use-button, #howToUseBtn, #howToUseSlideshowBtn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button[type="submit"]:hover,
+        .results button:hover,
+        #createSlideshowBtn:hover,
+        .download-button:hover,
+        .how-to-use-button:hover,
+        #howToUseBtn:hover,
+        #howToUseSlideshowBtn:hover {
+            background-color: var(--button-hover-bg-color);
+            color: var(--button-hover-text-color);
+        }
+
+        /* Results section */
+        #results {
+            display: none;
+            margin-top: 30px;
+            background-color: #e7f3fe;
+            padding: 20px;
+            box-sizing: border-box;
+            border-left: 6px solid #2196F3;
+            border-radius: 8px;
+        }
+
+        #results h2 {
+            color: #2196F3;
+        }
+
+        #results ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pictogram-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .pictogram-item {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 150px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .pictogram-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .pictogram-item input[type="checkbox"] {
+            margin-top: 10px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .download-button,
+        .how-to-use-button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            font-size: 0.8em;
+        }
+
+        /* Error Message Styles */
+        .error-message {
+            color: var(--error-color);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Attribution styles */
+        .attribution {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #555;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: #555;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .attribution a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Slideshow Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: var(--modal-bg-color); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: var(--modal-content-bg);
+            margin: 5% auto; /* 5% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 600px; /* Could be more or less, depending on screen size */
+            border-radius: 8px;
+            position: relative;
+            text-align: left;
+        }
+
+        /* Close Button */
+        .close-button, .close-slideshow-button, .close-how-to-use-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus,
+        .close-slideshow-button:hover,
+        .close-slideshow-button:focus,
+        .close-how-to-use-button:hover,
+        .close-how-to-use-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Read Aloud Button */
+        .read-aloud-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 0.9em;
+        }
+
+        .read-aloud-button:hover, .read-aloud-button:focus {
+            background-color: var(--button-hover-bg-color);
+            color: var(--button-hover-text-color);
+            outline: none;
+        }
+
+        /* Slideshow Modal Styles */
+        #slideshowModal .modal-content {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+        }
+
+        .slideshow-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .slideshow-controls {
+            margin-top: 15px;
+        }
+
+        .slideshow-controls button {
+            margin: 0 10px;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slideshow-controls button:hover {
+            background-color: var(--button-hover-bg-color);
+            color: var(--button-hover-text-color);
+        }
+
+        /* Fade Animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        /* Active Topic and Keyword Styles */
+        .active-topic, .active-keyword {
+            background-color: var(--secondary-color);
+            color: var(--button-hover-text-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .subtext {
+                font-size: 0.8em;
+                line-height: 1.4em;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                margin: 5px 8px;
+            }
+
+            .content h2 {
+                font-size: 1.4em;
+            }
+
+            label {
+                font-size: 0.9em;
+            }
+
+            button {
+                font-size: 0.9em;
+            }
+
+            .prev, .next {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .slideshow-controls button {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+
+            .options-list {
+                flex: 1 1 calc(50% - 10px); /* Two buttons per row on small screens */
+            }
+
+            .pictogram-item {
+                width: 120px;
+            }
+
+            #openInstructionsBtn {
+                position: static;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="media/asksiboticon.png" alt="Asksibot Logo">
+    <h1>Asksibot - The Occupational Therapy Hub</h1>
+    <button id="openInstructionsBtn" aria-label="How to Use the Pictogram Search Assistant">How to Use</button>
+    <p class="subtext">Developed on OpenAI by Christopher Horne, OTR/L</p>
+    <nav aria-label="Main Navigation">
+        <a href="index.html">Home</a>
+        <a href="/surveys/survey_selection.html">Surveys</a>
+        <a href="/timeline/timelineupto80.html">Timeline</a>
+        <a href="/shop/index.html">Shop</a>
+        <a href="/contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="content">
+        <h2>Pictogram Search Assistant</h2>
+        <form id="pictogramForm">
+            <!-- Topic Selection -->
+            <fieldset>
+                <legend>Topic or Subject:</legend>
+                <p class="instruction">Select one topic from the options below.</p>
+                <div class="options-list" id="topicOptions">
+                    <!-- Dynamically Generated Topic Radio Buttons -->
+                </div>
+            </fieldset>
+
+            <!-- Keywords Selection -->
+            <fieldset>
+                <legend>Specific Keywords or Concepts:</legend>
+                <p class="instruction">Select one or more keywords from the options below or enter your own.</p>
+                <div class="options-list" id="keywordOptions">
+                    <!-- Dynamically Generated Keyword Checkboxes -->
+                </div>
+                <textarea id="keywords" name="keywords" placeholder="Enter keywords separated by commas (optional)"></textarea>
+            </fieldset>
+
+            <button type="submit">Generate Search Terms</button>
+        </form>
+        <div id="results">
+            <h2>Your Search Terms</h2>
+            <ul id="searchTermsList"></ul>
+            <!-- Updated: Separate How to Use Buttons -->
+            <button id="howToUseBtn" aria-label="How to Use Instructions">How to Use Assistant</button>
+            <button id="howToUseSlideshowBtn" aria-label="How to Use Slideshow Instructions">How to Use Slideshow</button>
+            <h3>Pictograms:</h3>
+            <div class="pictogram-container" id="pictogramContainer">
+                <!-- Pictograms will be injected here -->
+            </div>
+            <div id="error" class="error-message"></div>
+            <button id="createSlideshowBtn" type="button">Create Slideshow</button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="attribution">
+        The pictographic symbols used are the property of the Government of Aragón and have been created by Sergio Palao for ARASAAC (<a href="http://www.arasaac.org" target="_blank" rel="noopener">http://www.arasaac.org</a>), distributed under the Creative Commons License BY-NC-SA.
+    </p>
+</footer>
+
+<!-- Instructions Modal Structure -->
+<div id="instructionsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="instructionsTitle" aria-modal="true">
+    <div class="modal-content">
+        <span class="close-button" aria-label="Close Instructions">&times;</span>
+        <h3 id="instructionsTitle">How to Use the Pictogram Search Assistant</h3>
+        <p>
+            Welcome to the Pictogram Assistant! It is designed to help find and utilize pictographic symbols from ARASAAC's extensive library.
+        </p>
+        <p>
+            <strong>Steps to Use the Assistant:</strong>
+        </p>
+        <ol>
+            <li>
+                <strong>Select a Topic:</strong> Choose one topic that best describes your needs from the available options. Your choice generates keywords to try.
+            </li>
+            <li>
+                <strong>Select Keywords:</strong> Choose relevant keywords related to your selected topic or enter your own specific keywords separated by commas.
+            </li>
+            <li>
+                <strong>Generate Search Terms:</strong> Click the "Generate Search Terms" button to compile your selections into unique search terms.
+            </li>
+            <li>
+                <strong>View Pictograms:</strong> The assistant will display relevant pictograms based on your keyword.
+            </li>
+            <li>
+                <strong>Create a Slideshow:</strong> Select the pictograms you wish to include in your slideshow by checking the box next to each pictogram. Once selected, click the "Create Slideshow" button to view your selected pictograms in a slideshow format.
+            </li>
+        </ol>
+        <p>
+            <strong>What Can Pictograms Be Used For?</strong>
+        </p>
+        <p>
+            Pictograms help to enhance communication, especially for individuals with speech or language difficulties. They can be utilized in various settings, including:
+        </p>
+        <ul>
+            <li>Developing communication boards or systems.</li>
+            <li>Creating visual schedules and routines.</li>
+            <li>Enhancing instructional materials and learning aids.</li>
+            <li>Facilitating social interactions and emotional expression.</li>
+            <li>Supporting daily living activities and independence.</li>
+        </ul>
+        <button class="read-aloud-button" id="readAloudBtn" aria-label="Read Instructions Aloud">Read Instructions Aloud</button>
+    </div>
+</div>
+
+<!-- Slideshow Instructions Modal Structure -->
+<div id="slideshowInstructionsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="slideshowInstructionsTitle" aria-modal="true">
+    <div class="modal-content">
+        <span class="close-how-to-use-button" aria-label="Close Slideshow Instructions">&times;</span>
+        <h3 id="slideshowInstructionsTitle">How to Use the Slideshow</h3>
+        <p>
+            Follow these steps to effectively utilize your slideshow:
+        </p>
+        <ol>
+            <li>
+                <strong>Select Pictograms:</strong> Browse through the displayed pictograms and check the boxes next to the ones you want to include in your slideshow.
+            </li>
+            <li>
+                <strong>Create Slideshow:</strong> Click the "Create Slideshow" button to compile your selected pictograms into a slideshow format.
+            </li>
+            <li>
+                <strong>Preview Slideshow:</strong> Use the "Prev" and "Next" buttons to navigate through your slideshow and ensure it meets your expectations.
+            </li>
+            <li>
+                <strong>Save or Download:</strong> You can use the slideshow directly from the site or download it by following the provided instructions within the slideshow modal.
+            </li>
+            <li>
+                <strong>Use the Slideshow:</strong> Utilize the slideshow in your desired setting, whether it's for communication boards, visual schedules, instructional materials, or any other purpose.
+            </li>
+        </ol>
+        <button class="read-aloud-button" id="readSlideshowAloudBtn" aria-label="Read Slideshow Instructions Aloud">Read Slideshow Instructions Aloud</button>
+    </div>
+</div>
+
+<!-- Slideshow Modal Structure -->
+<div id="slideshowModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="slideshowTitle" aria-modal="true">
+    <div class="modal-content">
+        <span class="close-slideshow-button" aria-label="Close Slideshow">&times;</span>
+        <h3 id="slideshowTitle">Your Pictogram Slideshow</h3>
+        <!-- Removed the "How to Use Slideshow" Button -->
+        <!-- Added Keyword Display -->
+        <p id="slideshowKeyword" style="font-size: 1em; margin-top: 10px; color: var(--secondary-color);"></p>
+        <div class="slideshow-container">
+            <img id="slideshowImage" src="" alt="Slideshow Pictogram" class="fade" style="width:100%; max-height:500px; object-fit: contain;">
+            <div class="slideshow-controls">
+                <button id="prevBtn" aria-label="Previous Pictogram">&#10094; Prev</button>
+                <button id="nextBtn" aria-label="Next Pictogram">Next &#10095;</button>
+            </div>
+        </div>
+        <div id="slideshowError" class="error-message"></div>
+    </div>
+</div>
+
+<!-- JavaScript for Functionality -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Define the 18 topics and their corresponding keywords
+        const topics = {
+            "Daily Routine": [
+                "Wake up", "Brush teeth", "Wash face", "Take a shower", "Get dressed",
+                "Eat breakfast", "Pack lunch", "Go to school/work", "Study", "Attend class",
+                "Playtime", "Lunch break", "Homework", "Snack time", "Exercise",
+                "Read a book", "Watch TV", "Dinner", "Family time", "Clean up",
+                "Take a bath", "Put on pajamas", "Bedtime story", "Go to bed", "Set alarm",
+                "Say goodnight", "Brush hair", "Use the toilet", "Wash hands", "Drink water"
+            ],
+            "Emotions": [
+                "Happy", "Sad", "Angry", "Excited", "Nervous",
+                "Calm", "Scared", "Surprised", "Confused", "Frustrated",
+                "Proud", "Embarrassed", "Lonely", "Bored", "Anxious",
+                "Jealous", "Disappointed", "Grateful", "Hopeful", "Curious",
+                "Relieved", "Guilty", "Ashamed", "Content", "Overwhelmed",
+                "Shocked", "Amused", "Confident", "Worried", "Envious"
+            ],
+            "School Activities": [
+                "Fire drill", "Standing in line", "No touching", "Sit", "Bathroom",
+                "Recess", "Work", "Circle time", "Read", "Write",
+                "Raise hand", "Listen", "Quiet", "Snack time", "Lunch",
+                "Play", "Share", "Clean up", "Art class", "Music class",
+                "Gym class", "Library", "School bus", "Teacher", "Personal space",
+                "Time out", "Stop", "More", "Good", "Student"
+            ],
+            "Well-Being Questions and Communication": [
+                "Pain", "Sore throat", "Head hurts", "Tired", "Constipated",
+                "Anxious", "How are you feeling?", "Happy", "Sad", "Angry",
+                "Hungry", "Thirsty", "Sick", "Calm", "Nervous",
+                "Excited", "Scared", "Bored", "Confused", "Frustrated",
+                "Comfortable", "Uncomfortable", "Safe", "Unsafe", "Help",
+                "Stop", "More", "Yes", "No", "Good"
+            ],
+            "Medical Appointments": [
+                "Appointment", "Waiting room", "Nurse", "Doctor", "Check-up",
+                "Blood pressure", "Temperature", "Stethoscope", "Heartbeat", "Injection",
+                "Medicine", "Pills", "Syrup", "X-ray", "MRI",
+                "Blood test", "Urine test", "Bandage", "Cast", "Thermometer",
+                "Pain", "Hurt", "Calm", "Breathe", "Sit still",
+                "Open mouth", "Say \"ah\"", "Lie down", "Stand up", "All done"
+            ],
+            "People": [
+                "Mom", "Dad", "Sister", "Brother", "Grandmother",
+                "Grandfather", "Friend", "Teacher", "Policeman", "Doctor",
+                "Occupational Therapist", "Speech Therapist", "Physical Therapist (PT)", "Priest", "Nurse",
+                "Dentist", "Neighbor", "Classmate", "Principal", "Coach",
+                "Babysitter", "Librarian", "Bus driver", "Mail carrier", "Firefighter",
+                "Chef", "Farmer", "Mechanic", "Cashier", "Waiter/Waitress"
+            ],
+            "Food and Drink": [
+                "Breakfast", "Lunch", "Dinner", "Snack", "Water",
+                "Juice", "Milk", "Tea", "Coffee", "Fruit",
+                "Vegetables", "Bread", "Cereal", "Sandwich", "Soup",
+                "Salad", "Pasta", "Rice", "Meat", "Fish",
+                "Chicken", "Eggs", "Cheese", "Yogurt", "Ice cream",
+                "Cake", "Cookies", "Candy", "Pizza", "Hamburger"
+            ],
+            "Safety Signs": [
+                "Stop", "Caution", "Exit", "No entry", "Danger",
+                "Fire exit", "Emergency", "First aid", "No smoking", "Wet floor",
+                "Do not touch", "No running", "No food or drink", "No pets", "No parking",
+                "Hand wash", "Keep out", "Authorized personnel only", "High voltage", "Poison",
+                "Biohazard", "Flammable", "Radiation", "Hard hat area", "Safety glasses required",
+                "Ear protection required", "No cell phones", "No photography", "Slippery when wet", "Keep door closed"
+            ],
+            "Household Chores": [
+                "Washing dishes", "Vacuuming", "Sweeping", "Mopping", "Dusting",
+                "Laundry", "Folding clothes", "Ironing", "Making the bed", "Cleaning windows",
+                "Taking out the trash", "Recycling", "Watering plants", "Feeding pets", "Walking the dog",
+                "Setting the table", "Clearing the table", "Cooking", "Baking", "Washing the car",
+                "Organizing toys", "Cleaning the bathroom", "Cleaning the kitchen", "Wiping surfaces", "Changing sheets",
+                "Polishing furniture", "Cleaning the fridge", "Emptying the dishwasher", "Sweeping the porch", "Raking leaves"
+            ],
+            "Directions": [
+                "Left", "Right", "Straight", "Turn around", "Up",
+                "Down", "Forward", "Backward", "Stop", "Go",
+                "Enter", "Exit", "Follow", "Wait", "Come here",
+                "Go there", "Upstairs", "Downstairs", "Inside", "Outside",
+                "Near", "Far", "Next to", "Across", "Through",
+                "Around", "Over", "Under", "Beside", "Between"
+            ],
+            "Holidays and Seasons": [
+                "Christmas", "Easter", "Halloween", "Thanksgiving", "New Year's Day",
+                "Valentine's Day", "Independence Day", "Hanukkah", "Diwali", "St. Patrick's Day",
+                "Mother's Day", "Father's Day", "Labor Day", "Memorial Day", "Veterans Day",
+                "Spring", "Summer", "Fall (Autumn)", "Winter", "Rainy",
+                "Snowy", "Sunny", "Cloudy", "Windy", "Hot",
+                "Cold", "Warm", "Cool", "Leaves falling", "Flowers blooming"
+            ],
+            "Body Parts": [
+                "Head", "Face", "Eyes", "Ears", "Nose",
+                "Mouth", "Teeth", "Tongue", "Hair", "Neck",
+                "Shoulders", "Arms", "Elbows", "Hands", "Fingers",
+                "Chest", "Stomach", "Back", "Legs", "Knees",
+                "Feet", "Toes", "Heart", "Lungs", "Brain",
+                "Muscles", "Bones", "Skin", "Nails", "Joints"
+            ],
+            "Health and Hygiene": [
+                "Wash hands", "Brush teeth", "Take a bath", "Use the toilet", "Comb hair",
+                "Cut nails", "Blow nose", "Cough", "Sneeze", "Use tissue",
+                "Wash face", "Brush hair", "Floss teeth", "Use hand sanitizer", "Drink water",
+                "Eat healthy", "Exercise", "Sleep", "Take medicine", "Visit doctor",
+                "Visit dentist", "Wear mask", "Check temperature", "Bandage", "Rest",
+                "Clean ears", "Apply lotion", "Use sunscreen", "Change clothes", "Stay clean"
+            ],
+            "Weather and Nature": [
+                "Sunny", "Rainy", "Cloudy", "Snowy", "Windy",
+                "Stormy", "Foggy", "Hot", "Cold", "Warm",
+                "Cool", "Thunder", "Lightning", "Hail", "Tornado",
+                "Tree", "Flower", "Grass", "Mountain", "River",
+                "Ocean", "Lake", "Forest", "Desert", "Beach",
+                "Rock", "Sand", "Leaf", "Animal", "Plant"
+            ],
+            "Time Concepts": [
+                "Morning", "Afternoon", "Evening", "Night", "Day",
+                "Week", "Month", "Year", "Today", "Tomorrow",
+                "Yesterday", "Calendar", "Clock", "Hour", "Minute",
+                "Second", "Now", "Later", "Soon", "Before",
+                "After", "Early", "Late", "On time", "Schedule",
+                "Alarm", "Timer", "Bedtime", "Lunchtime", "Playtime"
+            ]
+            // Add more topics as needed
+        };
+
+        // Initialize variables
+        const topicOptionsDiv = document.getElementById('topicOptions');
+        const keywordOptionsDiv = document.getElementById('keywordOptions');
+        const keywordsTextarea = document.getElementById('keywords');
+        const pictogramForm = document.getElementById('pictogramForm');
+        const resultsDiv = document.getElementById('results');
+        const searchTermsList = document.getElementById('searchTermsList');
+        const pictogramContainer = document.getElementById('pictogramContainer');
+        const errorDiv = document.getElementById('error');
+        const openInstructionsBtn = document.getElementById('openInstructionsBtn');
+        const instructionsModal = document.getElementById('instructionsModal');
+        const closeInstructionsBtn = instructionsModal.querySelector('.close-button');
+        const readAloudBtn = document.getElementById('readAloudBtn');
+        const howToUseBtn = document.getElementById('howToUseBtn'); // How to Use Assistant
+        const howToUseSlideshowBtn = document.getElementById('howToUseSlideshowBtn'); // How to Use Slideshow
+        const slideshowModal = document.getElementById('slideshowModal');
+        const closeSlideshowBtn = slideshowModal.querySelector('.close-slideshow-button');
+        const slideshowImage = document.getElementById('slideshowImage');
+        const slideshowKeyword = document.getElementById('slideshowKeyword'); // New Element
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideshowErrorDiv = document.getElementById('slideshowError');
+        const slideshowInstructionsModal = document.getElementById('slideshowInstructionsModal');
+        const closeSlideshowInstructionsBtn = slideshowInstructionsModal.querySelector('.close-how-to-use-button');
+        const readSlideshowAloudBtn = document.getElementById('readSlideshowAloudBtn');
+
+        let selectedVoice = null;
+        let slideshowPictograms = [];
+        let currentSlideIndex = 0;
+        let slideshowInterval = null;
+
+        // Load and select a female US voice for text-to-speech
+        function loadSelectedVoice() {
+            const voices = window.speechSynthesis.getVoices();
+            selectedVoice = voices.find(voice => voice.lang === 'en-US' && /female/i.test(voice.name));
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => voice.lang === 'en-US');
+            }
+        }
+
+        // Load voices and set the selected voice
+        loadSelectedVoice();
+
+        // Some browsers (like Chrome) load voices asynchronously
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadSelectedVoice;
+        }
+
+        // Generate Topic Radio Buttons
+        function generateTopicRadioButtons() {
+            for (let topic in topics) {
+                const label = document.createElement('label');
+                label.setAttribute('for', `topic-${topic}`);
+
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.id = `topic-${topic}`;
+                radio.name = 'topic';
+                radio.value = topic;
+                radio.setAttribute('aria-label', `Select topic ${topic}`);
+                radio.addEventListener('change', function() {
+                    loadKeywords(topic);
+                });
+
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(topic));
+
+                topicOptionsDiv.appendChild(label);
+            }
+        }
+
+        // Load Keywords Based on Selected Topic
+        function loadKeywords(selectedTopic) {
+            keywordOptionsDiv.innerHTML = ''; // Clear previous keywords
+            keywordsTextarea.value = ''; // Clear additional keywords
+
+            const keywords = topics[selectedTopic];
+            keywords.forEach(keyword => {
+                const label = document.createElement('label');
+                label.setAttribute('for', `keyword-${keyword}`);
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `keyword-${keyword}`;
+                checkbox.name = 'keyword';
+                checkbox.value = keyword;
+                checkbox.setAttribute('aria-label', `Select keyword ${keyword}`);
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        addKeywordToTextarea(keyword);
+                    } else {
+                        removeKeywordFromTextarea(keyword);
+                    }
+                });
+
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(keyword));
+
+                keywordOptionsDiv.appendChild(label);
+            });
+        }
+
+        // Add Keyword to Textarea
+        function addKeywordToTextarea(keyword) {
+            let currentKeywords = keywordsTextarea.value.trim();
+            const sanitizedKeyword = sanitizeInput(keyword);
+            // Avoid duplicate keywords
+            const keywordsArray = currentKeywords ? currentKeywords.split(',').map(k => k.trim()) : [];
+            if (!keywordsArray.includes(keyword)) {
+                keywordsTextarea.value = currentKeywords ? `${currentKeywords}, ${sanitizedKeyword}` : sanitizedKeyword;
+            }
+        }
+
+        // Remove Keyword from Textarea
+        function removeKeywordFromTextarea(keyword) {
+            let currentKeywords = keywordsTextarea.value.trim();
+            let keywordsArray = currentKeywords ? currentKeywords.split(',').map(k => k.trim()) : [];
+            keywordsArray = keywordsArray.filter(k => k !== keyword);
+            keywordsTextarea.value = keywordsArray.join(', ');
+        }
+
+        // Sanitize User Inputs
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+
+        // Handle Form Submission
+        pictogramForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const keywordsSelected = Array.from(document.querySelectorAll('input[name="keyword"]:checked')).map(cb => cb.value);
+            const additionalKeywords = keywordsTextarea.value.split(',').map(k => k.trim()).filter(k => k);
+
+            // Combine keywords from checkboxes and additional input
+            let searchTerms = [...keywordsSelected, ...additionalKeywords];
+
+            // Remove duplicates
+            searchTerms = [...new Set(searchTerms)];
+
+            if (searchTerms.length === 0) {
+                errorDiv.textContent = 'Please select at least one keyword or enter your own.';
+                resultsDiv.style.display = 'none';
+                pictogramContainer.innerHTML = '';
+                return;
+            }
+
+            // Display search terms
+            displaySearchTerms(searchTerms);
+
+            // Fetch pictograms
+            fetchPictograms(searchTerms);
+        });
+
+        // Display Search Terms
+        function displaySearchTerms(searchTerms) {
+            searchTermsList.innerHTML = '';
+            searchTerms.forEach(term => {
+                const li = document.createElement('li');
+                li.textContent = term;
+                searchTermsList.appendChild(li);
+            });
+            resultsDiv.style.display = 'block';
+        }
+
+        // Fetch Pictograms from ARASAAC API
+        async function fetchPictograms(searchTerms) {
+            errorDiv.textContent = '';
+            pictogramContainer.innerHTML = ''; // Clear previous pictograms
+
+            for (let term of searchTerms) {
+                try {
+                    const response = await axios.get(`https://api.arasaac.org/api/pictograms/en/search/${encodeURIComponent(term)}`);
+                    const pictograms = response.data.slice(0, 6); // Max 6 pictograms per keyword
+
+                    if (pictograms.length === 0) {
+                        throw new Error(`No pictograms found for "${term}".`);
+                    }
+
+                    pictograms.forEach(pictogram => {
+                        displayPictogram(pictogram);
+                    });
+
+                } catch (error) {
+                    errorDiv.textContent += `Error fetching pictograms for "${sanitizeInput(term)}". `;
+                }
+            }
+
+            if (pictogramContainer.childElementCount === 0) {
+                pictogramContainer.innerHTML = '<p>No pictograms available to display.</p>';
+            }
+        }
+
+        // Display Pictogram
+        function displayPictogram(pictogram) {
+            const pictogramItem = document.createElement('div');
+            pictogramItem.classList.add('pictogram-item');
+
+            // Image that opens in a new window when clicked
+            const img = document.createElement('img');
+            img.src = `https://static.arasaac.org/pictograms/${pictogram._id}/${pictogram._id}_300.png`;
+            img.alt = `Pictogram representing ${pictogram.keywords.map(k => k.keyword).join(', ')}`;
+            img.loading = 'lazy'; // Lazy Loading
+            img.addEventListener('click', function() {
+                window.open(`https://static.arasaac.org/pictograms/${pictogram._id}/${pictogram._id}_500.png`, '_blank');
+            });
+            pictogramItem.appendChild(img);
+
+            // Checkbox for selecting pictogram for slideshow
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `select-${pictogram._id}`;
+            checkbox.value = pictogram._id;
+            checkbox.setAttribute('aria-label', `Select pictogram for slideshow: ${pictogram.keywords.map(k => k.keyword).join(', ')}`);
+            pictogramItem.appendChild(checkbox);
+
+            const checkboxLabel = document.createElement('label');
+            checkboxLabel.htmlFor = `select-${pictogram._id}`;
+            checkboxLabel.textContent = ' Select';
+            pictogramItem.appendChild(checkboxLabel);
+
+            // Download Button
+            const downloadBtn = document.createElement('button');
+            downloadBtn.textContent = 'Download';
+            downloadBtn.classList.add('download-button');
+            downloadBtn.setAttribute('aria-label', `Download pictogram for ${pictogram.keywords.map(k => k.keyword).join(', ')}`);
+            downloadBtn.addEventListener('click', () => {
+                window.open(`https://static.arasaac.org/pictograms/${pictogram._id}/${pictogram._id}_500.png`, '_blank');
+            });
+            pictogramItem.appendChild(downloadBtn);
+
+            pictogramContainer.appendChild(pictogramItem);
+        }
+
+        // Open Instructions Modal
+        function openInstructionsModal() {
+            instructionsModal.style.display = 'block';
+            instructionsModal.setAttribute('aria-hidden', 'false');
+            instructionsModal.querySelector('.modal-content').focus();
+        }
+
+        // Close Instructions Modal
+        function closeInstructionsModal() {
+            instructionsModal.style.display = 'none';
+            instructionsModal.setAttribute('aria-hidden', 'true');
+            // Stop any ongoing speech
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+        }
+
+        // Open Instructions Modal when "How to Use" Button is Clicked
+        openInstructionsBtn.addEventListener('click', openInstructionsModal);
+
+        // Close Instructions Modal when close button is clicked
+        closeInstructionsBtn.addEventListener('click', closeInstructionsModal);
+
+        // Close Instructions Modal when clicking outside of the modal content
+        window.addEventListener('click', function(event) {
+            if (event.target == instructionsModal) {
+                closeInstructionsModal();
+            }
+            if (event.target == slideshowInstructionsModal) {
+                closeSlideshowInstructionsModal();
+            }
+        });
+
+        // Close All Modals on pressing Escape key
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                if (instructionsModal.style.display === 'block') {
+                    closeInstructionsModal();
+                }
+                if (slideshowModal.style.display === 'block') {
+                    closeSlideshowModal();
+                }
+                if (slideshowInstructionsModal.style.display === 'block') {
+                    closeSlideshowInstructionsModal();
+                }
+            }
+        });
+
+        // Read Aloud Functionality for Instructions Modal
+        readAloudBtn.addEventListener('click', function() {
+            const instructionsText = instructionsModal.innerText;
+            if ('speechSynthesis' in window) {
+                // Stop any ongoing speech before starting a new one
+                if (speechSynthesis.speaking) {
+                    speechSynthesis.cancel();
+                }
+
+                const utterance = new SpeechSynthesisUtterance(instructionsText);
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                    utterance.lang = selectedVoice.lang;
+                } else {
+                    // Fallback: Use default voice if no female US voice is found
+                    utterance.lang = 'en-US';
+                }
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech functionality.');
+            }
+        });
+
+        // Open How to Use Modal from Results Section
+        howToUseBtn.addEventListener('click', openInstructionsModal);
+
+        // Slideshow Instructions Modal Functionality
+        function openSlideshowInstructionsModal() {
+            slideshowInstructionsModal.style.display = 'block';
+            slideshowInstructionsModal.setAttribute('aria-hidden', 'false');
+            slideshowInstructionsModal.querySelector('.modal-content').focus();
+        }
+
+        function closeSlideshowInstructionsModal() {
+            slideshowInstructionsModal.style.display = 'none';
+            slideshowInstructionsModal.setAttribute('aria-hidden', 'true');
+            // Stop any ongoing speech
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+        }
+
+        // Open Slideshow Instructions Modal when "How to Use Slideshow" Button is Clicked
+        howToUseSlideshowBtn.addEventListener('click', openSlideshowInstructionsModal);
+
+        // Close Slideshow Instructions Modal when close button is clicked
+        closeSlideshowInstructionsBtn.addEventListener('click', closeSlideshowInstructionsModal);
+
+        // Read Aloud Functionality for Slideshow Instructions Modal
+        readSlideshowAloudBtn.addEventListener('click', function() {
+            const slideshowInstructionsText = slideshowInstructionsModal.innerText;
+            if ('speechSynthesis' in window) {
+                // Stop any ongoing speech before starting a new one
+                if (speechSynthesis.speaking) {
+                    speechSynthesis.cancel();
+                }
+
+                const utterance = new SpeechSynthesisUtterance(slideshowInstructionsText);
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                    utterance.lang = selectedVoice.lang;
+                } else {
+                    // Fallback: Use default voice if no female US voice is found
+                    utterance.lang = 'en-US';
+                }
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech functionality.');
+            }
+        });
+
+        // Slideshow Modal Functionality
+        createSlideshowBtn.addEventListener('click', function() {
+            const selectedPictograms = Array.from(document.querySelectorAll('#pictogramContainer .pictogram-item input[type="checkbox"]:checked')).map(cb => {
+                const img = cb.parentElement.querySelector('img');
+                return {
+                    src: img.src,
+                    alt: img.alt
+                };
+            });
+
+            if (selectedPictograms.length === 0) {
+                alert('Please select at least one pictogram to create a slideshow.');
+                return;
+            }
+
+            // Populate Slideshow Modal
+            slideshowImage.src = selectedPictograms[0].src;
+            slideshowImage.alt = selectedPictograms[0].alt;
+            slideshowKeyword.textContent = extractKeywordsFromAlt(selectedPictograms[0].alt);
+            slideshowModal.style.display = 'block';
+            slideshowModal.setAttribute('aria-hidden', 'false');
+            currentSlideIndex = 0;
+
+            // Store pictograms for slideshow navigation
+            slideshowPictograms = selectedPictograms;
+        });
+
+        // Function to extract keywords from alt text
+        function extractKeywordsFromAlt(altText) {
+            const prefix = "Pictogram representing ";
+            if (altText.startsWith(prefix)) {
+                return altText.substring(prefix.length);
+            }
+            return "";
+        }
+
+        // Close Slideshow Modal
+        function closeSlideshowModal() {
+            slideshowModal.style.display = 'none';
+            slideshowModal.setAttribute('aria-hidden', 'true');
+            // Stop any slideshow animations if implemented
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                slideshowInterval = null;
+            }
+            // Stop any ongoing speech
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+        }
+
+        closeSlideshowBtn.addEventListener('click', closeSlideshowModal);
+
+        // Slideshow Navigation Controls
+        prevBtn.addEventListener('click', function() {
+            if (slideshowPictograms.length === 0) return;
+            currentSlideIndex = (currentSlideIndex - 1 + slideshowPictograms.length) % slideshowPictograms.length;
+            updateSlideshow();
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (slideshowPictograms.length === 0) return;
+            currentSlideIndex = (currentSlideIndex + 1) % slideshowPictograms.length;
+            updateSlideshow();
+        });
+
+        // Function to update slideshow image and keyword
+        function updateSlideshow() {
+            const currentPictogram = slideshowPictograms[currentSlideIndex];
+            slideshowImage.classList.add('fade');
+            setTimeout(() => {
+                slideshowImage.src = currentPictogram.src;
+                slideshowImage.alt = currentPictogram.alt;
+                slideshowImage.classList.remove('fade');
+                slideshowKeyword.textContent = extractKeywordsFromAlt(currentPictogram.alt);
+            }, 500);
+        }
+
+        // Accessibility: Trap focus within modals
+        function trapFocus(modal) {
+            const focusableElements = modal.querySelectorAll('a[href], button, textarea, input, select');
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+
+            modal.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) { // Shift + Tab
+                        if (document.activeElement === firstFocusable) {
+                            e.preventDefault();
+                            lastFocusable.focus();
+                        }
+                    } else { // Tab
+                        if (document.activeElement === lastFocusable) {
+                            e.preventDefault();
+                            firstFocusable.focus();
+                        }
+                    }
+                }
+            });
+        }
+
+        // Apply focus trapping to all modals
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            const modalContent = modal.querySelector('.modal-content');
+            if (modalContent) {
+                trapFocus(modalContent);
+            }
+        });
+
+        // Initialize Topic Radio Buttons on Page Load
+        generateTopicRadioButtons();
+    });
+</script>
+
+<!-- NoScript Message -->
+<noscript>
+    <p style="text-align:center; color:red; margin-top:20px;">
+        JavaScript is required for full functionality of this site. Please enable JavaScript in your browser settings.
+    </p>
+</noscript>
+
+</body>
+</html>
