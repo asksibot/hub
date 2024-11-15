@@ -1,29 +1,198 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     color: #333;
+}
+
+/* Container Styles */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* Header Styles */
 header {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Navigation Styles */
-nav a {
-    margin: 0 15px;
-    text-decoration: none;
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #4e79a7;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Survey Form Styles */
+.survey-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.survey-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.survey-form button {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: #4e79a7;
     color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-nav a:hover {
+.survey-form button:hover {
+    background-color: #2f4b7c;
+}
+
+/* Modal Styles */
+.modal-overlay { 
+    display: none; 
+    position: fixed; 
+    z-index: 999; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 50%; 
+    top: 50%; 
+    width: 80%; 
+    max-width: 800px; 
+    transform: translate(-50%, -50%); 
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    overflow-y: auto; 
+    max-height: 80vh; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-header { 
+    padding: 10px; 
+    background-color: #4e79a7; 
+    color: #fff; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-content { 
+    padding: 20px; 
+}
+.modal-close { 
+    font-size: 24px; 
+    cursor: pointer; 
+}
+.modal-actions { 
+    text-align: right; 
+    padding: 20px; 
+    border-top: 1px solid #ddd; 
+}
+.modal-actions button { 
+    padding: 10px 15px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border: none; 
+    border-radius: 5px; 
+    margin-left: 10px;
+}
+.print-btn { 
+    background-color: #FF5722; 
+    color: white; 
+}
+.pdf-btn { 
+    background-color: #9C27B0; 
+    color: white; 
+}
+
+/* CTA Buttons Styles */
+.cta-buttons { 
+    margin-top: 15px; 
+}
+.cta-buttons button { 
+    margin-right: 10px; 
+    padding: 10px 15px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border: none; 
+    border-radius: 5px; 
+    color: white;
+}
+.buy-now { 
+    background-color: #4CAF50; 
+}
+.read-more { 
+    background-color: #2196F3; 
+}
+.wishlist { 
+    background-color: #FF9800; 
+}
+
+/* Recommendations Styles */
+.recommendations h2 {
+    color: #4e79a7;
+    margin-bottom: 15px;
+}
+
+.recommendations ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.recommendations li {
+    margin-bottom: 10px;
+}
+
+.recommendations a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.recommendations a:hover {
     text-decoration: underline;
 }
 
-/* Additional Styles... */
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 20px;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    .survey-form button {
+        font-size: 14px;
+    }
+}
