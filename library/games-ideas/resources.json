@@ -1,1 +1,26 @@
+{
+    "games-ideas": [
+        {
+            "type": "game",
+            "title": "Sensory Scavenger Hunt",
+            "author": "Various",
+            "description": "An interactive activity where children find items with specific textures, sounds, or colors, promoting sensory exploration and processing skills.",
+            "audience": ["caregiver", "therapist"],
+            "condition": ["sensory-processing", "life-skills"],
+            "amazon_link": "https://www.amazon.com/Sensory-Scavenger-Hunt/dp/example",
+            "readMore": "https://www.example.com/read-more-link5"
+        },
+        {
+            "type": "game",
+            "title": "Visual Schedule Creation",
+            "author": "Various",
+            "description": "A hands-on activity where children create their daily schedule using images, fostering routine-building skills and promoting independence.",
+            "audience": ["parent-guardian", "therapist"],
+            "condition": ["life-skills", "autism-spectrum"],
+            "amazon_link": "https://www.amazon.com/Visual-Schedule-Creation/dp/example",
+            "readMore": "https://www.example.com/read-more-link6"
+        }
+        // Add more resources as needed
+    ]
+}
 
