@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OT-Hub Books - Personal Growth & Relationships</title>
+    <style>
+        /* Basic styles for layout */
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .filter-section, .book-category { margin-bottom: 40px; }
+        .book-category ul { list-style: none; padding: 0; }
+        .book-category li { margin: 10px 0; }
+        .filter-buttons { margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Book List - Personal Growth & Relationships</h1>
+
+<div class="filter-section">
+    <h2>Personal Growth & Relationships</h2>
+    
+    <!-- Audience Filter -->
+    <label for="audience-filter-growth">Select Audience:</label>
+    <select id="audience-filter-growth">
+        <option value="">All</option>
+        <option value="individual">Individual</option>
+        <option value="therapist">Therapist</option>
+        <option value="caregiver">Caregiver</option>
+        <!-- Add more audiences as needed -->
+    </select>
+
+    <!-- Condition Filter -->
+    <label for="condition-filter-growth">Select Condition:</label>
+    <select id="condition-filter-growth">
+        <option value="">All</option>
+        <option value="marriage-relationships">Marriage & Relationships</option>
+        <option value="self-help">Self-Help</option>
+        <option value="family-dynamics">Family Dynamics</option>
+        <option value="emotional-wellness">Emotional Wellness</option>
+        <option value="healing">Healing</option>
+        <!-- Add more conditions as needed -->
+    </select>
+
+    <!-- Keyword Search -->
+    <label for="search-keyword-growth">Keyword Search:</label>
+    <input type="text" id="search-keyword-growth" placeholder="Enter keyword">
+
+    <div class="filter-buttons">
+        <button onclick="applyFilters('growth')">Apply Filters</button>
+        <button onclick="clearFilters('growth')">Clear Filters</button>
+    </div>
+
+    <div class="book-category" id="personal-growth">
+        <ul>
+            <!-- Book Item 1 -->
+            <li data-audience="individual" data-condition="marriage-relationships self-help">
+                <strong>The Seven Principles for Making Marriage Work</strong> by John M. Gottman, Ph.D., and Nan Silver
+                <p>Based on Gottman’s research on marital stability, this guide outlines seven principles for a healthy marriage, including creating shared meaning and solving conflicts.</p>
+            </li>
+
+            <!-- Book Item 2 -->
+            <li data-audience="individual therapist" data-condition="family-dynamics self-help">
+                <strong>Will I Ever Be Good Enough? Healing the Daughters of Narcissistic Mothers</strong> by Karyl McBride
+                <p>This book helps daughters of narcissistic mothers understand and heal from the effects of their upbringing, offering strategies for personal growth and setting boundaries.</p>
+            </li>
+
+            <!-- Book Item 3 -->
+            <li data-audience="individual therapist" data-condition="family-dynamics divorce">
+                <strong>Daughters of Divorce</strong> by Terry Gaspard and Tracy Clifford
+                <p>Focused on the impact of parental divorce on daughters, this book provides exercises to break cycles and foster fulfilling relationships.</p>
+            </li>
+
+            <!-- Book Item 4 -->
+            <li data-audience="individual caregiver therapist" data-condition="healing emotional-wellness">
+                <strong>The Body Keeps the Score</strong> by Bessel van der Kolk, MD
+                <p>This comprehensive work explores how trauma affects the body and mind, with insights on healing trauma through various therapeutic approaches, including EMDR, mindfulness, and yoga.</p>
+            </li>
+
+            <!-- Book Item 5 -->
+            <li data-audience="individual therapist" data-condition="self-help healing emotional-wellness">
+                <strong>Healing the Shame that Binds You</strong> by John Bradshaw
+                <p>Examines the role of toxic shame in shaping behavior, offering steps to recognize, confront, and heal shame for personal growth and healthier relationships.</p>
+            </li>
+
+            <!-- Book Item 6 -->
+            <li data-audience="individual therapist caregiver" data-condition="emotional-wellness family-dynamics">
+                <strong>Adult Children of Emotionally Immature Parents</strong> by Lindsay C. Gibson, PsyD
+                <p>Provides strategies for adults coping with the impact of emotionally immature parents, addressing issues like boundary setting and emotional healing.</p>
+            </li>
+
+            <!-- Book Item 7 -->
+            <li data-audience="individual caregiver therapist" data-condition="family-dynamics emotional-wellness healing">
+                <strong>Running on Empty</strong> by Dr. Jonice Webb
+                <p>Addresses the concept of Childhood Emotional Neglect (CEN), helping individuals identify the impact of emotional neglect and offering strategies for healing and self-awareness.</p>
+            </li>
+
+            <!-- Book Item 8 -->
+            <li data-audience="individual therapist caregiver" data-condition="marriage-relationships family-dynamics">
+                <strong>Attached: The New Science of Adult Attachment</strong> by Amir Levine, M.D., and Rachel Heller
+                <p>An exploration of attachment theory, explaining different attachment styles and providing insights into building healthier, more fulfilling relationships.</p>
+            </li>
+
+            <!-- Book Item 9 -->
+            <li data-audience="individual therapist caregiver" data-condition="emotional-wellness self-help family-dynamics">
+                <strong>Codependent No More</strong> by Melody Beattie
+                <p>Focuses on understanding and overcoming codependency, offering guidance on setting boundaries and finding self-worth apart from relationships.</p>
+            </li>
+
+            <!-- Book Item 10 -->
+            <li data-audience="individual therapist caregiver" data-condition="self-help family-dynamics emotional-wellness">
+                <strong>The Gifts of Imperfection</strong> by Brené Brown
+                <p>Encourages readers to embrace vulnerability and authenticity as strengths, offering practical insights on self-acceptance and wholehearted living.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+// Function to apply filters for a given section
+function applyFilters(section) {
+    const audienceFilter = document.getElementById(`audience-filter-${section}`).value;
+    const conditionFilter = document.getElementById(`condition-filter-${section}`).value;
+    const keyword = document.getElementById(`search-keyword-${section}`).value.toLowerCase();
+    const bookItems = document.querySelectorAll(`#${section} ul li`);
+
+    // Filter books based on selected audience, condition, and keyword
+    bookItems.forEach(book => {
+        const audience = book.getAttribute('data-audience');
+        const condition = book.getAttribute('data-condition');
+        const title = book.querySelector('strong').textContent.toLowerCase();
+        const description = book.querySelector('p').textContent.toLowerCase();
+
+        const matchesAudience = !audienceFilter || audience.includes(audienceFilter);
+        const matchesCondition = !conditionFilter || condition.includes(conditionFilter);
+        const matchesKeyword = !keyword || title.includes(keyword) || description.includes(keyword);
+
+        // Show or hide the book item based on filters
+        book.style.display = matchesAudience && matchesCondition && matchesKeyword ? 'block' : 'none';
+    });
+}
+
+// Function to clear filters for a given section
+function clearFilters(section) {
+    // Reset filter dropdowns and keyword input
+    document.getElementById(`audience-filter-${section}`).value = "";
+    document.getElementById(`condition-filter-${section}`).value = "";
+    document.getElementById(`search-keyword-${section}`).value = "";
+
+    // Show all book items in the section
+    const bookItems = document.querySelectorAll(`#${section} ul li`);
+    bookItems.forEach(book => {
+        book.style.display = 'block';
+    });
+}
+</script>
+
+</body>
+</html>
