@@ -1,0 +1,98 @@
+<div class="filter-section">
+    <h2>Parenting, Children & Autism Spectrum Resources</h2>
+    
+    <!-- Audience Filter -->
+    <label for="audience-filter-parenting">Select Audience:</label>
+    <select id="audience-filter-parenting">
+        <option value="">All</option>
+        <option value="parent-guardian">Parent/Guardian</option>
+        <option value="caregiver">Caregiver</option>
+        <option value="therapist">Therapist</option>
+        <!-- Add more audiences as needed -->
+    </select>
+
+    <!-- Condition Filter -->
+    <label for="condition-filter-parenting">Select Condition:</label>
+    <select id="condition-filter-parenting">
+        <option value="">All</option>
+        <option value="autism-spectrum">Autism Spectrum</option>
+        <option value="life-skills">Life Skills</option>
+        <option value="sensory-processing">Sensory Processing</option>
+        <option value="social-skills">Social Skills</option>
+        <option value="empathy-support">Empathy Support</option>
+        <!-- Add more conditions as needed -->
+    </select>
+
+    <!-- Keyword Search -->
+    <label for="search-keyword-parenting">Keyword Search:</label>
+    <input type="text" id="search-keyword-parenting" placeholder="Enter keyword">
+
+    <div class="filter-buttons">
+        <button onclick="applyFilters('parenting')">Apply Filters</button>
+        <button onclick="clearFilters('parenting')">Clear Filters</button>
+    </div>
+
+    <div class="book-category" id="parenting">
+        <ul>
+            <!-- Book Item 1 -->
+            <li data-audience="parent-guardian caregiver therapist" data-condition="autism-spectrum parenting">
+                <strong>A Parent’s Guide to Asperger Syndrome & High-Functioning Autism</strong> by Sally Ozonoff et al.
+                <p>This guide helps parents understand Asperger’s Syndrome and high-functioning autism, covering parenting strategies, promoting social and emotional skills, and supporting independence.</p>
+            </li>
+            
+            <!-- Book Item 2 -->
+            <li data-audience="parent-guardian caregiver therapist" data-condition="autism-spectrum life-skills">
+                <strong>How to Teach Life Skills to Kids with Autism or Asperger’s</strong> by Jennifer McIlwee Myers
+                <p>A practical guide for teaching essential life skills to children on the autism spectrum, focusing on self-care, social skills, safety, and job skills to prepare them for adult life.</p>
+            </li>
+            
+            <!-- Book Item 3 -->
+            <li data-audience="parent-guardian caregiver therapist" data-condition="autism-spectrum empathy-support">
+                <strong>Uniquely Human</strong> by Barry M. Prizant
+                <p>A human-centered approach to autism that emphasizes understanding strengths and empathy, helping to create individualized support for autistic individuals through understanding and empathy.</p>
+            </li>
+
+            <!-- Book Item 4 -->
+            <li data-audience="parent-guardian caregiver therapist" data-condition="autism-spectrum social-skills">
+                <strong>The Complete Guide to Asperger's Syndrome</strong> by Tony Attwood
+                <p>A comprehensive resource covering all aspects of Asperger’s Syndrome, including diagnosis, social skills, education, employment, and family dynamics, suitable for families, educators, and professionals.</p>
+            </li>
+
+            <!-- Book Item 5 -->
+            <li data-audience="parent-guardian caregiver therapist" data-condition="sensory-processing motor-skills">
+                <strong>Sensory Processing Solutions</strong> by Sally Fryer Dietz
+                <p>Provides drug-free therapies for children with sensory processing issues, including interventions for tactile, auditory, and visual challenges, with tips for creating a sensory-friendly environment at home.</p>
+            </li>
+
+            <!-- Book Item 6 -->
+            <li data-audience="parent-guardian caregiver therapist" data-condition="emotional-regulation sensory-processing">
+                <strong>The Kids' Guide to Staying Awesome and in Control</strong> by Lauren Brukner
+                <p>This guide helps children manage emotions and sensory processing challenges by recognizing emotions, using calming techniques, and building emotional resilience.</p>
+            </li>
+
+            <!-- Book Item 7 -->
+            <li data-audience="parent-guardian caregiver" data-condition="family-bonding educational-activities">
+                <strong>Awesome Everyday Family Activities</strong>
+                <p>A collection of unplugged games and activities designed for family bonding, with indoor and outdoor games, travel activities, and educational games for families to enjoy together.</p>
+            </li>
+
+            <!-- Book Item 8 -->
+            <li data-audience="therapist parent-guardian teacher" data-condition="visualization confidence-building">
+                <strong>See It. Say It. Do It!</strong> by Dr. Lynn F. Hellerstein
+                <p>A guide for parents and teachers to help children succeed academically and personally through visualization techniques, including creating visual pathways, building confidence, goal setting, and addressing academic challenges.</p>
+            </li>
+
+            <!-- Book Item 9 -->
+            <li data-audience="therapist parent-guardian caregiver" data-condition="sensory-integration motor-skills">
+                <strong>Sensory and Motor Strategies</strong> by Corinna Laurie
+                <p>Offers practical sensory integration activities and motor skills development techniques for children with sensory processing challenges, applicable in home, school, and community settings.</p>
+            </li>
+
+            <!-- Book Item 10 -->
+            <li data-audience="therapist parent-guardian caregiver" data-condition="sensory-processing learning-support">
+                <strong>Sensory Secrets</strong> by Catherine Chemin Schneider
+                <p>A resource for understanding sensory processing in children and its impact on learning, with practical strategies for creating sensory-friendly environments and supporting children’s learning needs.</p>
+            </li>
+        </ul>
+    </div>
+</div>
