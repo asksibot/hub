@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Green Time Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    /* CSS Styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #e8f5e9;
+        color: #333;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    h1, h2, h3 {
+        text-align: center;
+        color: #2e7d32;
+    }
+    .explanation {
+        background-color: #c8e6c9;
+        padding: 15px;
+        border-left: 6px solid #66bb6a;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .instructions {
+        background-color: #a5d6a7;
+        padding: 15px;
+        border-left: 6px solid #66bb6a;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .question {
+        margin-top: 20px;
+    }
+    .question p {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .rating-grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .rating-grid label {
+        flex: 1 1 13%;
+        text-align: center;
+        margin-bottom: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .rating-grid input[type="radio"] {
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    button {
+        margin-top: 30px;
+        padding: 15px;
+        width: 100%;
+        background-color: #66bb6a;
+        color: white;
+        border: none;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #388e3c;
+    }
+    #results {
+        display: none;
+        margin-top: 30px;
+        background-color: #c8e6c9;
+        padding: 20px;
+        border-left: 6px solid #66bb6a;
+        border-radius: 4px;
+    }
+    #results h2 {
+        color: #2e7d32;
+        text-align: center;
+    }
+    #results p {
+        margin: 10px 0;
+        line-height: 1.6;
+    }
+    .print-button {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #42a5f5;
+        color: white;
+        border: none;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .print-button:hover {
+        background-color: #1e88e5;
+    }
+    /* Styles for Recommendations */
+    #recommendations {
+        margin-top: 30px;
+        background-color: #e0f2f1;
+        padding: 20px;
+        border-left: 6px solid #26a69a;
+        border-radius: 4px;
+    }
+    #recommendations h3 {
+        color: #00796b;
+        text-align: center;
+    }
+    #recommendations ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    #recommendations li {
+        margin-bottom: 15px;
+    }
+    #recommendations li strong {
+        color: #004d40;
+    }
+    #recommendations li a {
+        color: #00695c;
+        text-decoration: none;
+    }
+    #recommendations li a:hover {
+        text-decoration: underline;
+    }
+    @media (min-width: 600px) {
+        .rating-grid label {
+            font-size: 16px;
+        }
+        button, .print-button {
+            font-size: 18px;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        /* Hide all elements */
+        body * {
+            visibility: hidden;
+        }
+        /* Show the results section */
+        #results, #results * {
+            visibility: visible;
+        }
+        /* Hide the print button itself */
+        .print-button {
+            display: none;
+        }
+        /* Adjust the layout for printing */
+        #results {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 20px;
+            border: none;
+            box-shadow: none;
+        }
+        /* Remove background colors */
+        body {
+            background-color: white;
+        }
+        .container {
+            background-color: white;
+            box-shadow: none;
+        }
+    }
+</style>
+
+</head>
+<body>
+ <div class="container">
+        <h1>Green Time Survey</h1>
+
+        <!-- Keyword Selection Section -->
+        <div class="explanation">
+            <label for="keyword-selection">Which of the following best describes your interest:</label>
+            <select id="keyword-selection" required>
+                <option value="">-- Select an option --</option>
+                <option value="parent-guardian">Parent/Guardian</option>
+                <option value="individual">Individual</option>
+                <option value="neurodivergent">Neurodivergent</option>
+                <option value="caregiver">Caregiver</option>
+                <option value="therapist">Therapist</option>
+                <option value="teacher">Teacher</option>
+            </select>
+        </div>
+
+        <!-- Explanation Section -->
+        <div class="explanation">
+            <h3>Understanding Green Time</h3>
+            <p><strong>Green Time</strong> refers to the time individuals spend in natural environments, such as parks, forests, gardens, or any green spaces. Engaging with nature has been shown to significantly improve mood, reduce stress, enhance cognitive function, and promote overall well-being.</p>
+            <p>By participating in this survey, you'll gain insights into how much time you spend in natural settings and understand the potential impact of nature on your mental and emotional health.</p>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="instructions">
+            <h3>Survey Instructions</h3>
+            <p>Please rate how frequently each statement applies to you using the scale below:</p>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><strong>1 - Almost Never:</strong> About 5% or less of the time</li>
+                <li><strong>2 - Rarely:</strong> About 25% of the time</li>
+                <li><strong>3 - Seldom:</strong> About 50% of the time</li>
+                <li><strong>4 - Occasionally:</strong> About 75% of the time</li>
+                <li><strong>5 - Frequently:</strong> About 95% or more of the time</li>
+                <li><strong>6 - Very Frequently:</strong> Nearly always</li>
+                <li><strong>7 - Always:</strong> All the time</li>
+            </ul>
+            <p>Answer honestly; there are no right or wrong answers.</p>
+        </div>
+
+        <!-- Survey Form -->
+        <form id="surveyForm">
+            <!-- Section 1: Time Spent in Nature -->
+            <h2>Section 1: Time Spent in Nature</h2>
+            
+            <!-- Question 1 -->
+            <div class="question">
+                <p>1. I visit parks or green spaces during my free time.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q1" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q1" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q1" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q1" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q1" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q1" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q1" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question">
+                <p>2. I spend time outdoors engaging in activities like walking, jogging, or cycling.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q2" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q2" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q2" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q2" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q2" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q2" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q2" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question">
+                <p>3. I enjoy outdoor activities such as hiking, camping, or fishing.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q3" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q3" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q3" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q3" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q3" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q3" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q3" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question">
+                <p>4. I spend time gardening or working in my yard.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q4" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q4" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q4" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q4" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q4" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q4" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q4" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question">
+                <p>5. I take nature walks or go bird watching.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q5" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q5" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q5" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q5" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q5" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q5" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q5" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="question">
+                <p>6. I participate in outdoor sports or recreational activities.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q6" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q6" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q6" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q6" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q6" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q6" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q6" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="question">
+                <p>7. I spend time at the beach, lake, or river.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q7" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q7" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q7" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q7" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q7" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q7" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q7" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="question">
+                <p>8. I enjoy picnics or outdoor gatherings.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q8" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q8" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q8" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q8" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q8" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q8" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q8" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 9 -->
+            <div class="question">
+                <p>9. I take my pets for walks in natural settings.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q9" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q9" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q9" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q9" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q9" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q9" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q9" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="question">
+                <p>10. I spend time relaxing in my backyard or on my balcony.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q10" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q10" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q10" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q10" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q10" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q10" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q10" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Section 2: Time Spent Indoors -->
+            <h2>Section 2: Time Spent Indoors</h2>
+            
+            <!-- Question 11 -->
+            <div class="question">
+                <p>11. I spend my free time watching TV or movies.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q11" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q11" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q11" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q11" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q11" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q11" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q11" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 12 -->
+            <div class="question">
+                <p>12. I play video games or use my computer for entertainment.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q12" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q12" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q12" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q12" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q12" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q12" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q12" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 13 -->
+            <div class="question">
+                <p>13. I read books, magazines, or online articles.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q13" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q13" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q13" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q13" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q13" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q13" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q13" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 14 -->
+            <div class="question">
+                <p>14. I engage in indoor hobbies such as crafting, painting, or knitting.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q14" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q14" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q14" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q14" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q14" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q14" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q14" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 15 -->
+            <div class="question">
+                <p>15. I spend time cooking or baking.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q15" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q15" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q15" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q15" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q15" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q15" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q15" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 16 -->
+            <div class="question">
+                <p>16. I enjoy indoor fitness activities such as yoga or home workouts.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q16" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q16" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q16" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q16" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q16" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q16" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q16" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 17 -->
+            <div class="question">
+                <p>17. I spend time socializing with family or friends indoors.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q17" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q17" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q17" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q17" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q17" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q17" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q17" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 18 -->
+            <div class="question">
+                <p>18. I work on indoor projects or repairs.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q18" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q18" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q18" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q18" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q18" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q18" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q18" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 19 -->
+            <div class="question">
+                <p>19. I organize or declutter my living space regularly.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q19" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q19" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q19" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q19" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q19" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q19" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q19" value="7">7 - Always</label>
+                </div>
+            </div>
+            
+            <!-- Question 20 -->
+            <div class="question">
+                <p>20. I practice mindfulness or meditation indoors.</p>
+                <div class="rating-grid">
+                    <label><input type="radio" name="q20" value="1" required>1 - Almost Never</label>
+                    <label><input type="radio" name="q20" value="2">2 - Rarely</label>
+                    <label><input type="radio" name="q20" value="3">3 - Seldom</label>
+                    <label><input type="radio" name="q20" value="4">4 - Occasionally</label>
+                    <label><input type="radio" name="q20" value="5">5 - Frequently</label>
+                    <label><input type="radio" name="q20" value="6">6 - Very Frequently</label>
+                    <label><input type="radio" name="q20" value="7">7 - Always</label>
+                </div>
+            </div>
+ <!-- Submit Button -->
+            <button type="button" onclick="calculateResults()">Submit</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results">
+            <h2>Your Survey Results</h2>
+            <p id="resultText"></p>
+            <button class="print-button" onclick="printResults()">Print or Save Results</button>
+
+            <!-- Recommendations Section -->
+            <div id="recommendations">
+                <h3>Recommended Resources Based on Your Interest:</h3>
+                <ul id="resourceList"></ul>
+            </div>
+        </div>
+    </div>
+<!-- Hidden Resources Section -->
+    <div id="hidden-resources" style="display: none;">
+        <!-- Resources Section -->
+        <div class="book-section" id="resources">
+            <h2>Resources</h2>
+
+            <!-- Resource List -->
+            <ul id="resource-list">
+                <!-- Sensory Processing and Motor Skills -->
+                <li data-audience="therapist caregiver parent-guardian" data-condition="sensory-processing motor-skills" data-survey="">
+                    <h3>Sensory Processing and Motor Skills</h3>
+                    <ul>
+                        <li>
+                            <strong>Development of Hand Skills in the Child</strong> - Jane Case-Smith, Charlane Pehoski
+                            <br>Summary: Focuses on the development of fine motor skills in children, essential for daily activities and academic tasks.
+                        </li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </li>
+                <!-- Add more categories as needed -->
+            </ul>
+        </div>
+    </div>
+<!-- Hidden Resources Section -->
+<div id="hidden-resources" style="display: none;">
+        <!-- Resources Section -->
+        <div class="book-section" id="resources">
+            <h2>Resources</h2>
+    <!-- Resource List -->
+    <ul id="resource-list">
+
+        <!-- Sensory Processing and Motor Skills -->
+        <li data-audience="therapist caregiver parent-guardian" data-condition="sensory-processing motor-skills" data-survey="">
+            <h3>Sensory Processing and Motor Skills</h3>
+            <ul>
+                <li>
+                    <strong>Development of Hand Skills in the Child</strong> - Jane Case-Smith, Charlane Pehoski
+                    <br>Summary: Focuses on the development of fine motor skills in children, essential for daily activities and academic tasks.
+                </li>
+                <li>
+                    <strong>Oh Behave! Sensory Processing and Behavioral Strategies</strong> - Maryann Colby Trott, MA
+                    <br>Summary: Provides practical strategies for addressing sensory processing challenges and associated behaviors.
+                </li>
+                <li>
+                    <strong>School Hardening: Sensory Integration Strategies for Class and Home</strong> - Lynne Courtney Tupper, Kathryn E. Klosterman Miesner
+                    <br>Summary: Sensory integration techniques to help children feel secure and ready to learn in different environments.
+                </li>
+                <li>
+                    <strong>S.M.I.L.Y. (Sensory Motor Integration & Learning with Yoga)</strong> - April Merrilee, MA, OTR
+                    <br>Summary: A yoga-based sensory motor program aimed at improving sensory integration through structured movement sessions.
+                </li>
+                <li>
+                    <strong>Sensory and Motor Strategies</strong> - Corinna Laurie
+                    <br>Summary: Practical sensory and motor activities to support learning and development, especially in autistic children.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1787753407/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Sensory Secrets: How to Jump-Start Learning in Children</strong> - Catherine Chemin Schneider
+                    <br>Summary: Explains the connection between sensory processing and learning with hands-on strategies.
+                </li>
+                <li>
+                    <strong>The Sensory Connection: An OT and SLP Team Approach</strong> - Nancy Kashman, Janet Mora
+                    <br>Summary: Collaborative strategies for occupational and speech-language therapists working with sensory processing challenges.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1931615272/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Time Timer</strong>
+                    <br>Summary: Visual timer that helps individuals manage time more effectively, often used in sensory processing or executive functioning settings.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/B000J5OFW0/" target="_blank">Buy Now</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Social Skills and Emotional Development -->
+        <li data-audience="therapist caregiver parent-guardian individual neurodivergent" data-condition="social-skills emotional-development autism-spectrum" data-survey="">
+            <h3>Social Skills and Emotional Development</h3>
+            <ul>
+                <li>
+                    <strong>Autism & PDD: Social Skills Lessons</strong> - Pam Britton Reese, Nena C. Challenner
+                    <br>Summary: Lessons to build social skills for children with autism and pervasive developmental disorders.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1575031045/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>People Skills</strong> - Robert Bolton, PhD
+                    <br>Summary: Teaches techniques for effective communication, assertiveness, active listening, and conflict resolution.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/067162248X/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Raising Kids with Big Baffling Behaviors</strong> - Robyn Gobbel
+                    <br>Summary: Strategies for understanding and managing complex behaviors in children, with a focus on brain-body-sensory integration.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/173766810X/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Surviving Your Adolescents</strong> - Thomas W. Phelan, PhD
+                    <br>Summary: Guidance on effective communication and boundary-setting with teenagers.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1889140536/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Talking It Out: A Guided-Question Approach to Problem Solving</strong> - Monica Gustafson, Margaret Owen
+                    <br>Summary: Encourages children to develop problem-solving skills through guided questions.
+                </li>
+            </ul>
+        </li>
+
+        <!-- Executive Functioning and Life Skills -->
+        <li data-audience="individual neurodivergent caregiver therapist" data-condition="executive-functioning life-skills adhd" data-survey="">
+            <h3>Executive Functioning and Life Skills</h3>
+            <ul>
+                <li>
+                    <strong>HBR Guide to Emotional Intelligence</strong>
+                    <br>Summary: Tools for building emotional intelligence, focusing on relationships, resilience, and leadership skills.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1633693842/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Smart but Scattered—and Stalled</strong> - Richard Guare, PhD, Colin Guare, MS, Peg Dawson, EdD
+                    <br>Summary: A 10-step program to help young adults improve executive functioning skills, set goals, and transition to independence.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1462515545/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Unstuck & On Target!</strong> - Lynn Cannon, Lauren Kenworthy, Katie C. Alexander, Monica Adler Werner, Laura Gutermuth Anthony
+                    <br>Summary: Curriculum to improve flexibility, planning, and organization in children, with a focus on executive function skills.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1937473867/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>101 Activities for Kids in Tight Spaces</strong> - Carol Stock Kranowitz
+                    <br>Summary: Creative activities for children to engage in confined spaces, supporting flexibility and executive skills.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/0312134206/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Survival Signs Curriculum</strong>
+                    <br>Summary: Teaches essential safety and survival signs, often used in special education to promote independence.
+                </li>
+            </ul>
+        </li>
+
+        <!-- Therapeutic and Educational Resources -->
+        <li data-audience="teacher therapist caregiver" data-condition="therapeutic-resources educational-resources motor-skills" data-survey="">
+            <h3>Therapeutic and Educational Resources</h3>
+            <ul>
+                <li>
+                    <strong>I Can Primary Skills K-3</strong> - Janet A. Wessel, Lauriece L. Zittel
+                    <br>Summary: Skills workbook for young learners focusing on foundational skills in early childhood education.
+                </li>
+                <li>
+                    <strong>SASP (Spatial Awareness Skills Program)</strong> - Jerome Rosner
+                    <br>Summary: Helps children develop spatial awareness, crucial for early learning in math and reading.
+                </li>
+                <li>
+                    <strong>See It. Say It. Do It!</strong> - Dr. Lynn F. Hellerstein
+                    <br>Summary: Guide for using visualization to improve children's confidence and goal-setting abilities.
+                </li>
+                <li>
+                    <strong>The Complete Guide to Asperger's Syndrome</strong> - Tony Attwood
+                    <br>Summary: Comprehensive overview of Asperger's, covering diagnosis, social skills, and coping strategies.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1843104954/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Yogarilla Exercises and Activities</strong>
+                    <br>Summary: Illustrated yoga card deck to encourage movement and mindfulness in children, supporting physical and sensory needs.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/B001JEPV8K/" target="_blank">Buy Now</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Parenting and Family Dynamics -->
+        <li data-audience="caregiver parent-guardian individual" data-condition="family-dynamics emotional-development" data-survey="">
+            <h3>Parenting and Family Dynamics</h3>
+            <ul>
+                <li>
+                    <strong>Adult Children of Emotionally Immature Parents</strong> - Lindsay C. Gibson, PsyD
+                    <br>Summary: Offers strategies for healing from the effects of having emotionally immature parents.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1626251703/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Daughters of Divorce</strong> - Terry Gaspard, MSW, LICSW, Tracy Clifford
+                    <br>Summary: Guidance for women dealing with the legacy of parental divorce, with a focus on building healthy relationships.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1492620651/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Surviving Your Adolescents</strong> - Thomas W. Phelan, PhD
+                    <br>Summary: Practical strategies for managing and letting go of teens during the challenging adolescent years.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1889140536/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>The Orchid and the Dandelion</strong> - W. Thomas Boyce, MD
+                    <br>Summary: Examines personality differences, explaining why some children are more sensitive and how to help them thrive.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/0340995104/" target="_blank">Buy Now</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Add any additional resources here, following the same structure -->
+    </ul>
+</div>
+<!-- JavaScript for Survey Functionality -->
+<script>
+    function calculateResults() {
+        let outdoorScore = 0;
+        let indoorScore = 0;
+        let unanswered = false;
+        const numberOfOutdoorQuestions = 10; // Questions 1-10
+        const numberOfIndoorQuestions = 10; // Questions 11-20
+
+        // Ensure keyword selection is made
+        const keyword = document.getElementById('keyword-selection').value;
+        if (!keyword) {
+            alert('Please select your interest.');
+            return;
+        }
+
+        // Calculate Outdoor Score
+        for (let i = 1; i <= numberOfOutdoorQuestions; i++) {
+            const radios = document.getElementsByName('q' + i);
+            let answered = false;
+            let value = 0;
+            for (let j = 0; j < radios.length; j++) {
+                if (radios[j].checked) {
+                    value = parseInt(radios[j].value);
+                    answered = true;
+                    break;
+                }
+            }
+            if (!answered) {
+                unanswered = true;
+                break;
+            }
+            outdoorScore += value;
+        }
+
+        // Calculate Indoor Score
+        if (!unanswered) {
+            for (let i = 11; i <= numberOfOutdoorQuestions + numberOfIndoorQuestions; i++) {
+                const radios = document.getElementsByName('q' + i);
+                let answered = false;
+                let value = 0;
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        value = parseInt(radios[j].value);
+                        answered = true;
+                        break;
+                    }
+                }
+                if (!answered) {
+                    unanswered = true;
+                    break;
+                }
+                indoorScore += value;
+            }
+        }
+
+        if (unanswered) {
+            alert('Please answer all the questions.');
+            return;
+        }
+
+        // Calculate Net Green Time Score
+        const netGreenTimeScore = outdoorScore - indoorScore;
+
+        // Determine the category based on the net score
+        let category = '';
+        let suggestions = '';
+        if (netGreenTimeScore >= 35) {
+            category = 'High Engagement';
+            suggestions = 'Excellent! Keep up the great work and continue enjoying the benefits of nature on your mental and emotional health.';
+        } else if (netGreenTimeScore >= 0 && netGreenTimeScore < 35) {
+            category = 'Moderate Engagement';
+            suggestions = 'You\'re doing well! Try to incorporate more varied outdoor activities to further enhance your well-being.';
+        } else {
+            category = 'Low Engagement';
+            suggestions = 'Consider increasing your time spent in nature. Even short walks in a park can significantly boost your mood and reduce stress.';
+        }
+
+        // Generate result text with HTML formatting
+        const resultText = `<strong>Total Outdoor Score:</strong> ${outdoorScore} out of 70 (${((outdoorScore / 70) * 100).toFixed(2)}%)<br><br>` +
+                           `<strong>Total Indoor Score:</strong> ${indoorScore} out of 70 (${((indoorScore / 70) * 100).toFixed(2)}%)<br><br>` +
+                           `<strong>Net Green Time Score:</strong> ${netGreenTimeScore}<br><br>` +
+                           `<strong>Category:</strong> ${category}<br><br>` +
+                           `<strong>Suggestions:</strong> ${suggestions}`;
+
+        // Display results
+        document.getElementById('resultText').innerHTML = resultText;
+        document.getElementById('results').style.display = 'block';
+
+        // Display recommendations based on the selected keyword
+        displayRecommendations(keyword);
+
+        // Scroll to results
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function displayRecommendations(keyword) {
+        const resourceListElement = document.getElementById('resourceList');
+        resourceListElement.innerHTML = ''; // Clear previous list
+
+        // Get all the resource categories from the hidden HTML
+        const resourceCategories = document.querySelectorAll('#hidden-resources #resource-list > li');
+
+        // Loop through each category
+        resourceCategories.forEach(category => {
+            const audience = category.getAttribute('data-audience').split(' ');
+
+            // Check if the category matches the selected keyword
+            if (audience.includes(keyword)) {
+                const categoryTitle = category.querySelector('h3').textContent;
+                const categoryItems = category.querySelectorAll('ul > li');
+
+                const categoryTitleElement = document.createElement('h4');
+                categoryTitleElement.textContent = categoryTitle;
+                resourceListElement.appendChild(categoryTitleElement);
+
+                const ul = document.createElement('ul');
+
+                // Loop through each item in the category
+                categoryItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = item.innerHTML; // Copy the HTML content
+                    ul.appendChild(li);
+                });
+
+                resourceListElement.appendChild(ul);
+            }
+        });
+
+        // If no recommendations found
+        if (resourceListElement.innerHTML === '') {
+            resourceListElement.innerHTML = '<p>No recommendations available for your selection.</p>';
+        }
+    }
+
+    function printResults() {
+        window.print();
+    }
+</script>
+</body>
+</html>
