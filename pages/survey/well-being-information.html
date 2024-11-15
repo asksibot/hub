@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprehensive Well-Being Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .instructions, .disclaimer {
+            background-color: #fffbcc;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 6px solid #ffe066;
+        }
+        .section {
+            margin-top: 30px;
+        }
+        .question {
+            margin-top: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .options label {
+            flex: 1;
+            text-align: center;
+        }
+        input[type="radio"] {
+            margin: 0 5px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 15px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+            cursor: pointer;
+        }
+        #results {
+            display: none;
+            margin-top: 20px;
+            background-color: #e7f3fe;
+            padding: 20px;
+            border-left: 6px solid #2196F3;
+        }
+        #results h2 {
+            text-align: center;
+            color: #2196F3;
+        }
+        .print-button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+        }
+        .print-button:hover {
+            background-color: #0b7dda;
+            cursor: pointer;
+        }
+        @media (min-width: 600px) {
+            .options label, input, button {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comprehensive Well-Being Survey</h1>
+        <div class="instructions">
+            <p><strong>Purpose of the Survey:</strong></p>
+            <p>This survey assesses your well-being concerning time spent in nature, barriers to engaging with nature, and the effects of Seasonal Affective Disorder (SAD) and light therapy on your life.</p>
+            <p><strong>Instructions:</strong> For each statement, rate how frequently it applies to you on a scale from <strong>1 (Never)</strong> to <strong>5 (Always)</strong>. Answer honestly; there are no right or wrong answers.</p>
+        </div>
+        <form id="surveyForm">
+                        
+            <!-- Section 1: Time Spent in Nature -->
+            <div class="section">
+                <h2>Section 1: Time Spent in Nature</h2>
+                <p><strong>Rate each statement from 1 (Never) to 5 (Always):</strong></p>
+                <!-- Questions 1-10 -->
+                <div class="question">
+                    <p>1. I visit parks or green spaces during my free time.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="1" required>1</label>
+                        <label><input type="radio" name="q1" value="2">2</label>
+                        <label><input type="radio" name="q1" value="3">3</label>
+                        <label><input type="radio" name="q1" value="4">4</label>
+                        <label><input type="radio" name="q1" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>2. I spend time outdoors engaging in activities like walking, jogging, or cycling.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="1" required>1</label>
+                        <label><input type="radio" name="q2" value="2">2</label>
+                        <label><input type="radio" name="q2" value="3">3</label>
+                        <label><input type="radio" name="q2" value="4">4</label>
+                        <label><input type="radio" name="q2" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>3. I feel more relaxed after spending time in nature.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="1" required>1</label>
+                        <label><input type="radio" name="q3" value="2">2</label>
+                        <label><input type="radio" name="q3" value="3">3</label>
+                        <label><input type="radio" name="q3" value="4">4</label>
+                        <label><input type="radio" name="q3" value="5">5</label>
+                    </div>
+                </div>
+                <!-- Questions 4-10: Continue in the same format -->
+                <div class="question">
+                    <p>4. I try to incorporate nature into my daily routine.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="1" required>1</label>
+                        <label><input type="radio" name="q4" value="2">2</label>
+                        <label><input type="radio" name="q4" value="3">3</label>
+                        <label><input type="radio" name="q4" value="4">4</label>
+                        <label><input type="radio" name="q4" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>5. I prefer spending time outdoors to staying indoors.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="1" required>1</label>
+                        <label><input type="radio" name="q5" value="2">2</label>
+                        <label><input type="radio" name="q5" value="3">3</label>
+                        <label><input type="radio" name="q5" value="4">4</label>
+                        <label><input type="radio" name="q5" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>6. I engage in gardening or other nature-related hobbies.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="1" required>1</label>
+                        <label><input type="radio" name="q6" value="2">2</label>
+                        <label><input type="radio" name="q6" value="3">3</label>
+                        <label><input type="radio" name="q6" value="4">4</label>
+                        <label><input type="radio" name="q6" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>7. I notice a positive impact on my mood after being in nature.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="1" required>1</label>
+                        <label><input type="radio" name="q7" value="2">2</label>
+                        <label><input type="radio" name="q7" value="3">3</label>
+                        <label><input type="radio" name="q7" value="4">4</label>
+                        <label><input type="radio" name="q7" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>8. I seek opportunities to be in nature even during busy schedules.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="1" required>1</label>
+                        <label><input type="radio" name="q8" value="2">2</label>
+                        <label><input type="radio" name="q8" value="3">3</label>
+                        <label><input type="radio" name="q8" value="4">4</label>
+                        <label><input type="radio" name="q8" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>9. I enjoy outdoor activities with family and friends.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="1" required>1</label>
+                        <label><input type="radio" name="q9" value="2">2</label>
+                        <label><input type="radio" name="q9" value="3">3</label>
+                        <label><input type="radio" name="q9" value="4">4</label>
+                        <label><input type="radio" name="q9" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>10. I explore different natural settings, such as forests, beaches, and mountains.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="1" required>1</label>
+                        <label><input type="radio" name="q10" value="2">2</label>
+                        <label><input type="radio" name="q10" value="3">3</label>
+                        <label><input type="radio" name="q10" value="4">4</label>
+                        <label><input type="radio" name="q10" value="5">5</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Barriers to Nature Engagement -->
+            <div class="section">
+                <h2>Section 2: Barriers to Nature Engagement</h2>
+                <p><strong>Rate each statement from 1 (Never) to 5 (Always):</strong></p>
+                <!-- Questions 11-20 -->
+                <div class="question">
+                    <p>11. Lack of time prevents me from spending time in nature.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="1" required>1</label>
+                        <label><input type="radio" name="q11" value="2">2</label>
+                        <label><input type="radio" name="q11" value="3">3</label>
+                        <label><input type="radio" name="q11" value="4">4</label>
+                        <label><input type="radio" name="q11" value="5">5</label>
+                    </div>
+                </div>
+                <!-- Questions 12-20: Continue in the same format -->
+                <div class="question">
+                    <p>12. I have limited access to green spaces.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="1" required>1</label>
+                        <label><input type="radio" name="q12" value="2">2</label>
+                        <label><input type="radio" name="q12" value="3">3</label>
+                        <label><input type="radio" name="q12" value="4">4</label>
+                        <label><input type="radio" name="q12" value="5">5</label>
+                    </div>
+                </div>
+                <!-- Continue for questions 13-20 -->
+                <div class="question">
+                    <p>13. Weather conditions often deter me from going outside.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="1" required>1</label>
+                        <label><input type="radio" name="q13" value="2">2</label>
+                        <label><input type="radio" name="q13" value="3">3</label>
+                        <label><input type="radio" name="q13" value="4">4</label>
+                        <label><input type="radio" name="q13" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>14. Physical limitations or health issues make it difficult to be outdoors.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="1" required>1</label>
+                        <label><input type="radio" name="q14" value="2">2</label>
+                        <label><input type="radio" name="q14" value="3">3</label>
+                        <label><input type="radio" name="q14" value="4">4</label>
+                        <label><input type="radio" name="q14" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>15. I feel unsafe in certain outdoor environments.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="1" required>1</label>
+                        <label><input type="radio" name="q15" value="2">2</label>
+                        <label><input type="radio" name="q15" value="3">3</label>
+                        <label><input type="radio" name="q15" value="4">4</label>
+                        <label><input type="radio" name="q15" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>16. I prefer indoor activities over outdoor ones.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="1" required>1</label>
+                        <label><input type="radio" name="q16" value="2">2</label>
+                        <label><input type="radio" name="q16" value="3">3</label>
+                        <label><input type="radio" name="q16" value="4">4</label>
+                        <label><input type="radio" name="q16" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>17. I find it difficult to balance work, family, and outdoor time.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="1" required>1</label>
+                        <label><input type="radio" name="q17" value="2">2</label>
+                        <label><input type="radio" name="q17" value="3">3</label>
+                        <label><input type="radio" name="q17" value="4">4</label>
+                        <label><input type="radio" name="q17" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>18. Social commitments limit my outdoor activities.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="1" required>1</label>
+                        <label><input type="radio" name="q18" value="2">2</label>
+                        <label><input type="radio" name="q18" value="3">3</label>
+                        <label><input type="radio" name="q18" value="4">4</label>
+                        <label><input type="radio" name="q18" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>19. I lack motivation to engage in outdoor activities.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="1" required>1</label>
+                        <label><input type="radio" name="q19" value="2">2</label>
+                        <label><input type="radio" name="q19" value="3">3</label>
+                        <label><input type="radio" name="q19" value="4">4</label>
+                        <label><input type="radio" name="q19" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>20. I feel disconnected from nature due to urban living.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="1" required>1</label>
+                        <label><input type="radio" name="q20" value="2">2</label>
+                        <label><input type="radio" name="q20" value="3">3</label>
+                        <label><input type="radio" name="q20" value="4">4</label>
+                        <label><input type="radio" name="q20" value="5">5</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Seasonal Affective Disorder (SAD) and Light Therapy -->
+            <div class="section">
+                <h2>Section 3: Seasonal Affective Disorder (SAD) and Light Therapy</h2>
+                <p><strong>Rate each statement from 1 (Never) to 5 (Always):</strong></p>
+                <!-- Questions 21-30 -->
+                <div class="question">
+                    <p>21. I feel more tired and sluggish during the winter months.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="1" required>1</label>
+                        <label><input type="radio" name="q21" value="2">2</label>
+                        <label><input type="radio" name="q21" value="3">3</label>
+                        <label><input type="radio" name="q21" value="4">4</label>
+                        <label><input type="radio" name="q21" value="5">5</label>
+                    </div>
+                </div>
+                <!-- Continue for questions 22-30 -->
+                <div class="question">
+                    <p>22. My mood worsens during the fall and winter.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="1" required>1</label>
+                        <label><input type="radio" name="q22" value="2">2</label>
+                        <label><input type="radio" name="q22" value="3">3</label>
+                        <label><input type="radio" name="q22" value="4">4</label>
+                        <label><input type="radio" name="q22" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>23. I experience increased cravings for carbohydrates in the winter.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="1" required>1</label>
+                        <label><input type="radio" name="q23" value="2">2</label>
+                        <label><input type="radio" name="q23" value="3">3</label>
+                        <label><input type="radio" name="q23" value="4">4</label>
+                        <label><input type="radio" name="q23" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>24. I use a light therapy box to help manage my symptoms.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="1" required>1</label>
+                        <label><input type="radio" name="q24" value="2">2</label>
+                        <label><input type="radio" name="q24" value="3">3</label>
+                        <label><input type="radio" name="q24" value="4">4</label>
+                        <label><input type="radio" name="q24" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>25. I notice an improvement in my mood and energy levels with light therapy.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="1" required>1</label>
+                        <label><input type="radio" name="q25" value="2">2</label>
+                        <label><input type="radio" name="q25" value="3">3</label>
+                        <label><input type="radio" name="q25" value="4">4</label>
+                        <label><input type="radio" name="q25" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>26. I have difficulty waking up in the mornings during darker months.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="1" required>1</label>
+                        <label><input type="radio" name="q26" value="2">2</label>
+                        <label><input type="radio" name="q26" value="3">3</label>
+                        <label><input type="radio" name="q26" value="4">4</label>
+                        <label><input type="radio" name="q26" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>27. I find it challenging to maintain a regular routine during the winter.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="1" required>1</label>
+                        <label><input type="radio" name="q27" value="2">2</label>
+                        <label><input type="radio" name="q27" value="3">3</label>
+                        <label><input type="radio" name="q27" value="4">4</label>
+                        <label><input type="radio" name="q27" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>28. I feel more anxious and irritable during the winter months.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="1" required>1</label>
+                        <label><input type="radio" name="q28" value="2">2</label>
+                        <label><input type="radio" name="q28" value="3">3</label>
+                        <label><input type="radio" name="q28" value="4">4</label>
+                        <label><input type="radio" name="q28" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>29. I seek out sunlight or bright environments to boost my mood.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="1" required>1</label>
+                        <label><input type="radio" name="q29" value="2">2</label>
+                        <label><input type="radio" name="q29" value="3">3</label>
+                        <label><input type="radio" name="q29" value="4">4</label>
+                        <label><input type="radio" name="q29" value="5">5</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>30. I experience sleep disturbances during the fall and winter.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="1" required>1</label>
+                        <label><input type="radio" name="q30" value="2">2</label>
+                        <label><input type="radio" name="q30" value="3">3</label>
+                        <label><input type="radio" name="q30" value="4">4</label>
+                        <label><input type="radio" name="q30" value="5">5</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="calculateResults()">Submit</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results">
+            <h2>Your Survey Results</h2>
+            <p id="resultText"></p>
+            <button class="print-button" onclick="printResults()">Print or Save Results</button>
+        </div>
+
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> This survey is for educational and self-reflection purposes only and is not a diagnostic tool. For concerns about mental health, please consult a qualified healthcare professional.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateResults() {
+            let totalScore = 0;
+            let unanswered = false;
+
+            // Total number of questions
+            const totalQuestions = 30;
+
+            // Loop through all questions
+            for (let i = 1; i <= totalQuestions; i++) {
+                let questionName = 'q' + i;
+                let radios = document.getElementsByName(questionName);
+                let answered = false;
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        totalScore += parseInt(radios[j].value);
+                        answered = true;
+                        break;
+                    }
+                }
+                if (!answered) {
+                    unanswered = true;
+                    break;
+                }
+            }
+
+            if (unanswered) {
+                alert('Please answer all the questions.');
+                return;
+            }
+
+            // Interpret the total score
+            let interpretation = '';
+            if (totalScore >= 30 && totalScore <= 60) {
+                interpretation = '**Low Impact (30-60 Points):**\n- Maintain your current balance of activities.\n- Continue engaging in habits that support your well-being.\n- Enjoy regular outdoor activities and exposure to natural light.';
+            } else if (totalScore >= 61 && totalScore <= 90) {
+                interpretation = '**Moderate Impact (61-90 Points):**\n- Plan regular breaks and downtime to recharge.\n- Incorporate more outdoor activities and exposure to natural light into your routine.\n- Use light therapy during darker months to improve mood and energy levels.';
+            } else if (totalScore >= 91 && totalScore <= 120) {
+                interpretation = '**High Impact (91-120 Points):**\n- Prioritize self-care and make time to recharge.\n- Use light therapy regularly and spend more time in nature.\n- Identify and address barriers to outdoor activities and natural light exposure.';
+            } else if (totalScore >= 121 && totalScore <= 150) {
+                interpretation = '**Very High Impact (121-150 Points):**\n- Make significant lifestyle changes to improve your well-being.\n- Seek support from a healthcare provider or therapist.\n- Focus on regular outdoor activities, balanced routines, and consistent use of light therapy.';
+            }
+
+            // Display results
+            let resultText = `**Your Total Score:** ${totalScore}/150\n\n${interpretation}`;
+            document.getElementById('resultText').innerText = resultText;
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function printResults() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
