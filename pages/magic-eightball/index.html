@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Advice Ball</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Basic styling */
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .eightball {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background-color: #000;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .triangle {
+            width: 100px;
+            height: 100px;
+            background: #1a1a1a;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #advice {
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Magic Advice Ball</h1>
+    <div class="eightball" onclick="getRandomAdvice()">
+        <div class="triangle">
+            <p id="advice">Click for advice</p>
+        </div>
+    </div>
+
+    <script>
+        // Load the JSON data and display a random piece of advice
+        async function getRandomAdvice() {
+            try {
+                const response = await fetch('resources.json');
+                const data = await response.json();
+
+                // Flatten the advice content from all sections
+                const adviceList = data.advice.flatMap(section => section.content);
+
+                // Select a random piece of advice
+                const randomIndex = Math.floor(Math.random() * adviceList.length);
+                const randomAdvice = adviceList[randomIndex];
+
+                // Display the selected advice
+                document.getElementById('advice').textContent = randomAdvice;
+            } catch (error) {
+                console.error("Error fetching advice:", error);
+                document.getElementById('advice').textContent = "Unable to load advice. Please try again.";
+            }
+        }
+    </script>
+</body>
+</html>
