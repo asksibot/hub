@@ -1,1 +1,26 @@
+{
+    "education-learning": [
+        {
+            "type": "book",
+            "title": "Learning with Purpose",
+            "author": "Jane Doe",
+            "description": "This book explores effective strategies for enhancing cognitive development in the classroom.",
+            "audience": ["teacher", "parent-guardian"],
+            "condition": ["education", "cognitive-development"],
+            "amazon_link": "https://www.amazon.com/Learning-with-Purpose/dp/example",
+            "readMore": "https://www.example.com/read-more-link3"
+        },
+        {
+            "type": "book",
+            "title": "School Success Strategies",
+            "author": "John Smith",
+            "description": "Comprehensive techniques to foster a successful learning environment.",
+            "audience": ["teacher", "student"],
+            "condition": ["education", "life-skills"],
+            "amazon_link": "https://www.amazon.com/School-Success-Strategies/dp/example",
+            "readMore": "https://www.example.com/read-more-link4"
+        }
+        // Add more resources as needed
+    ]
+}
 
