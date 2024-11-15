@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Asksibot OT Hub Bookstore</title>
+    <meta name="description" content="Curated books and resources for enhancing relationships and personal development">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* [Same styles as before] */
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #4e79a7;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
+
+        /* Navigation Menu Styles */
+        nav {
+            background-color: #2f4b7c;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f7f7f7;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #d1e5f0;
+            color: #2f4b7c;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .affiliate-note {
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Survey Section Styles */
+        .survey-section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .survey-section h2 {
+            margin-top: 0;
+        }
+
+        .survey-section label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .survey-section select,
+        .survey-section input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .survey-section button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background-color: #4e79a7;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .survey-section button:hover {
+            background-color: #2f4b7c;
+        }
+
+        /* Resource List Styles */
+        #resource-list > li {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            list-style-type: none;
+        }
+
+        #resource-list h3 {
+            margin-top: 0;
+            color: #4e79a7;
+        }
+
+        .book-list,
+        .toy-list,
+        .activity-list,
+        .recommendation-list {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .book-list li,
+        .toy-list li,
+        .activity-list li,
+        .recommendation-list li {
+            margin-bottom: 10px;
+        }
+
+        .book-list strong,
+        .toy-list strong,
+        .activity-list strong,
+        .recommendation-list strong {
+            color: #2f4b7c;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            max-width: 800px;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        .modal-header {
+            padding: 10px;
+            background-color: #4e79a7;
+            color: #fff;
+            cursor: move;
+        }
+
+        .modal-content {
+            padding: 20px;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* Overlay Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #4e79a7;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 600px) {
+            nav a {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Asksibot OT Hub Bookstore</h1>
+        <p>Curated books and resources for enhancing relationships and personal development</p>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="#survey">Survey</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <div class="container">
+        <p class="affiliate-note">Note: This page contains affiliate links. We may earn a commission if you make a purchase through these links, at no additional cost to you.</p>
+
+        <!-- Survey Section -->
+        <div class="survey-section" id="survey">
+            <h2>Find the Right Resources for Your Needs</h2>
+            <form>
+                <!-- Visitor Types with Needs -->
+                <label for="visitor-type">Which of the following best describes your interests in one of the following keyword(s):</label>
+                <select id="visitor-type">
+                    <option value="">-- Select an option --</option>
+                    <option value="parent-guardian">Parent/Guardian - Someone who has children and is responsible for their upbringing and care.</option>
+                    <option value="individual">Individual - Seeking information on sensory integration challenges.</option>
+                    <option value="neurodivergent">Neurodivergent - An individual whose brain functions differently from what is considered typical, including conditions like autism, ADHD, dyslexia, and more.</option>
+                    <option value="caregiver">Caregiver - A person who provides care for someone else, such as a family member with a disability, an elderly relative, or someone with a chronic illness.</option>
+                    <option value="therapist">Therapist - A professional who helps individuals manage and overcome mental health issues, emotional challenges, and other psychological concerns.</option>
+                    <option value="teacher">Teacher - Someone who educates and guides students in a formal or informal setting, helping them acquire knowledge and skills.</option>
+                    <!-- Add other options as needed -->
+                </select>
+
+                <button type="button" onclick="applySurveyFilters()">Get Recommendations</button>
+            </form>
+        </div>
+
+        <!-- Modal Popup for Recommendations -->
+        <div id="modal-overlay" class="modal-overlay"></div>
+        <div id="recommendation-modal" class="modal">
+            <div class="modal-header" id="modal-header">
+                <span class="modal-close" id="modal-close">&times;</span>
+                <h2 style="margin: 0;">Recommended Resources</h2>
+            </div>
+            <div class="modal-content" id="modal-content">
+                <!-- Filtered resources will be displayed here -->
+            </div>
+        </div>
+
+       <!-- Resources Section -->
+<div class="book-section" id="resources">
+    <h2>Resources</h2>
+
+    <!-- Resource List -->
+    <ul id="resource-list">
+
+        <!-- Sensory Processing and Motor Skills -->
+        <li data-audience="therapist caregiver parent-guardian" data-condition="sensory-processing motor-skills" data-survey="">
+            <h3>Sensory Processing and Motor Skills</h3>
+            <ul>
+                <li>
+                    <strong>Development of Hand Skills in the Child</strong> - Jane Case-Smith, Charlane Pehoski
+                    <br>Summary: Focuses on the development of fine motor skills in children, essential for daily activities and academic tasks.
+                </li>
+                <li>
+                    <strong>Oh Behave! Sensory Processing and Behavioral Strategies</strong> - Maryann Colby Trott, MA
+                    <br>Summary: Provides practical strategies for addressing sensory processing challenges and associated behaviors.
+                </li>
+                <li>
+                    <strong>School Hardening: Sensory Integration Strategies for Class and Home</strong> - Lynne Courtney Tupper, Kathryn E. Klosterman Miesner
+                    <br>Summary: Sensory integration techniques to help children feel secure and ready to learn in different environments.
+                </li>
+                <li>
+                    <strong>S.M.I.L.Y. (Sensory Motor Integration & Learning with Yoga)</strong> - April Merrilee, MA, OTR
+                    <br>Summary: A yoga-based sensory motor program aimed at improving sensory integration through structured movement sessions.
+                </li>
+                <li>
+                    <strong>Sensory and Motor Strategies</strong> - Corinna Laurie
+                    <br>Summary: Practical sensory and motor activities to support learning and development, especially in autistic children.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1787753407/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Sensory Secrets: How to Jump-Start Learning in Children</strong> - Catherine Chemin Schneider
+                    <br>Summary: Explains the connection between sensory processing and learning with hands-on strategies.
+                </li>
+                <li>
+                    <strong>The Sensory Connection: An OT and SLP Team Approach</strong> - Nancy Kashman, Janet Mora
+                    <br>Summary: Collaborative strategies for occupational and speech-language therapists working with sensory processing challenges.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1931615272/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Time Timer</strong>
+                    <br>Summary: Visual timer that helps individuals manage time more effectively, often used in sensory processing or executive functioning settings.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/B000J5OFW0/" target="_blank">Buy Now</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Social Skills and Emotional Development -->
+        <li data-audience="therapist caregiver parent-guardian individual neurodivergent" data-condition="social-skills emotional-development autism-spectrum" data-survey="">
+            <h3>Social Skills and Emotional Development</h3>
+            <ul>
+                <li>
+                    <strong>Autism & PDD: Social Skills Lessons</strong> - Pam Britton Reese, Nena C. Challenner
+                    <br>Summary: Lessons to build social skills for children with autism and pervasive developmental disorders.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1575031045/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>People Skills</strong> - Robert Bolton, PhD
+                    <br>Summary: Teaches techniques for effective communication, assertiveness, active listening, and conflict resolution.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/067162248X/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Raising Kids with Big Baffling Behaviors</strong> - Robyn Gobbel
+                    <br>Summary: Strategies for understanding and managing complex behaviors in children, with a focus on brain-body-sensory integration.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/173766810X/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Surviving Your Adolescents</strong> - Thomas W. Phelan, PhD
+                    <br>Summary: Guidance on effective communication and boundary-setting with teenagers.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1889140536/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Talking It Out: A Guided-Question Approach to Problem Solving</strong> - Monica Gustafson, Margaret Owen
+                    <br>Summary: Encourages children to develop problem-solving skills through guided questions.
+                </li>
+            </ul>
+        </li>
+
+        <!-- Executive Functioning and Life Skills -->
+        <li data-audience="individual neurodivergent caregiver therapist" data-condition="executive-functioning life-skills adhd" data-survey="">
+            <h3>Executive Functioning and Life Skills</h3>
+            <ul>
+                <li>
+                    <strong>HBR Guide to Emotional Intelligence</strong>
+                    <br>Summary: Tools for building emotional intelligence, focusing on relationships, resilience, and leadership skills.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1633693842/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Smart but Scattered—and Stalled</strong> - Richard Guare, PhD, Colin Guare, MS, Peg Dawson, EdD
+                    <br>Summary: A 10-step program to help young adults improve executive functioning skills, set goals, and transition to independence.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1462515545/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Unstuck & On Target!</strong> - Lynn Cannon, Lauren Kenworthy, Katie C. Alexander, Monica Adler Werner, Laura Gutermuth Anthony
+                    <br>Summary: Curriculum to improve flexibility, planning, and organization in children, with a focus on executive function skills.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1937473867/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>101 Activities for Kids in Tight Spaces</strong> - Carol Stock Kranowitz
+                    <br>Summary: Creative activities for children to engage in confined spaces, supporting flexibility and executive skills.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/0312134206/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Survival Signs Curriculum</strong>
+                    <br>Summary: Teaches essential safety and survival signs, often used in special education to promote independence.
+                </li>
+            </ul>
+        </li>
+
+        <!-- Therapeutic and Educational Resources -->
+        <li data-audience="teacher therapist caregiver" data-condition="therapeutic-resources educational-resources motor-skills" data-survey="">
+            <h3>Therapeutic and Educational Resources</h3>
+            <ul>
+                <li>
+                    <strong>I Can Primary Skills K-3</strong> - Janet A. Wessel, Lauriece L. Zittel
+                    <br>Summary: Skills workbook for young learners focusing on foundational skills in early childhood education.
+                </li>
+                <li>
+                    <strong>SASP (Spatial Awareness Skills Program)</strong> - Jerome Rosner
+                    <br>Summary: Helps children develop spatial awareness, crucial for early learning in math and reading.
+                </li>
+                <li>
+                    <strong>See It. Say It. Do It!</strong> - Dr. Lynn F. Hellerstein
+                    <br>Summary: Guide for using visualization to improve children's confidence and goal-setting abilities.
+                </li>
+                <li>
+                    <strong>The Complete Guide to Asperger's Syndrome</strong> - Tony Attwood
+                    <br>Summary: Comprehensive overview of Asperger's, covering diagnosis, social skills, and coping strategies.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1843104954/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Yogarilla Exercises and Activities</strong>
+                    <br>Summary: Illustrated yoga card deck to encourage movement and mindfulness in children, supporting physical and sensory needs.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/B001JEPV8K/" target="_blank">Buy Now</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Parenting and Family Dynamics -->
+        <li data-audience="caregiver parent-guardian individual" data-condition="family-dynamics emotional-development" data-survey="">
+            <h3>Parenting and Family Dynamics</h3>
+            <ul>
+                <li>
+                    <strong>Adult Children of Emotionally Immature Parents</strong> - Lindsay C. Gibson, PsyD
+                    <br>Summary: Offers strategies for healing from the effects of having emotionally immature parents.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1626251703/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Daughters of Divorce</strong> - Terry Gaspard, MSW, LICSW, Tracy Clifford
+                    <br>Summary: Guidance for women dealing with the legacy of parental divorce, with a focus on building healthy relationships.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1492620651/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>Surviving Your Adolescents</strong> - Thomas W. Phelan, PhD
+                    <br>Summary: Practical strategies for managing and letting go of teens during the challenging adolescent years.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/1889140536/" target="_blank">Buy Now</a>
+                </li>
+                <li>
+                    <strong>The Orchid and the Dandelion</strong> - W. Thomas Boyce, MD
+                    <br>Summary: Examines personality differences, explaining why some children are more sensitive and how to help them thrive.
+                    <br>Amazon Link: <a href="https://www.amazon.com/dp/0340995104/" target="_blank">Buy Now</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Add any additional resources here, following the same structure -->
+    </ul>
+</div>
+
+        <footer>
+            <p>&copy; 2024 Asksibot OT Hub Bookstore. All rights reserved.</p>
+        </footer>
+
+        <!-- JavaScript for Filtering and Modal -->
+        <script>
+            // Function to apply survey filters
+            function applySurveyFilters() {
+                // Get selected visitor type value
+                const visitorType = document.getElementById('visitor-type').value;
+
+                // If no visitor type is selected, do nothing
+                if (!visitorType) {
+                    alert("Please select an option.");
+                    return;
+                }
+
+                // Get all resource items
+                const resources = document.querySelectorAll('#resource-list > li');
+
+                // Filtered resources array
+                let filteredResources = [];
+
+                // Loop through each resource and determine if it should be included
+                resources.forEach(resource => {
+                    let includeResource = true;
+
+                    // Check Audience (visitor-type)
+                    if (visitorType) {
+                        const resourceAudience = resource.dataset.audience.split(' ');
+                        if (!resourceAudience.includes(visitorType)) {
+                            includeResource = false;
+                        }
+                    }
+
+                    // Add resource to filtered list if it meets criteria
+                    if (includeResource) {
+                        filteredResources.push(resource.cloneNode(true));
+                    }
+                });
+
+                // Display filtered resources in modal
+                showModal(filteredResources);
+            }
+
+            // Function to show modal with filtered resources
+            function showModal(resources) {
+                const modalOverlay = document.getElementById('modal-overlay');
+                const modal = document.getElementById('recommendation-modal');
+                const modalContent = document.getElementById('modal-content');
+
+                // Clear previous content
+                modalContent.innerHTML = '';
+
+                if (resources.length === 0) {
+                    modalContent.innerHTML = '<p>No resources match your criteria.</p>';
+                } else {
+                    const resourceList = document.createElement('ul');
+                    resources.forEach(resource => {
+                        resourceList.appendChild(resource);
+                    });
+                    modalContent.appendChild(resourceList);
+                }
+
+                // Show modal and overlay
+                modalOverlay.style.display = 'block';
+                modal.style.display = 'block';
+
+                // Enable dragging of the modal
+                dragElement(modal);
+
+                // Close modal on clicking the close button or overlay
+                document.getElementById('modal-close').onclick = closeModal;
+                modalOverlay.onclick = closeModal;
+            }
+
+            // Function to close modal
+            function closeModal() {
+                document.getElementById('modal-overlay').style.display = 'none';
+                document.getElementById('recommendation-modal').style.display = 'none';
+            }
+
+            // Function to make the modal draggable
+            function dragElement(elmnt) {
+                const modalHeader = document.getElementById('modal-header');
+                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+                if (modalHeader) {
+                    modalHeader.onmousedown = dragMouseDown;
+                } else {
+                    elmnt.onmousedown = dragMouseDown;
+                }
+
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+
+                    // Get the mouse cursor position at startup
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                }
+
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+
+                    // Calculate the new cursor position
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+
+                    // Set the element's new position
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
+
+                function closeDragElement() {
+                    // Stop moving when mouse button is released
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
