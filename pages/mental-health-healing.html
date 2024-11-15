@@ -1,0 +1,137 @@
+<div class="filter-section">
+    <h2>Mental Health & Healing</h2>
+    
+    <!-- Audience Filter -->
+    <label for="audience-filter-health">Select Audience:</label>
+    <select id="audience-filter-health">
+        <option value="">All</option>
+        <option value="individual">Individual</option>
+        <option value="therapist">Therapist</option>
+        <option value="caregiver">Caregiver</option>
+        <!-- Add other audience options as needed -->
+    </select>
+
+    <!-- Condition Filter -->
+    <label for="condition-filter-health">Select Condition:</label>
+    <select id="condition-filter-health">
+        <option value="">All</option>
+        <option value="emotional-healing">Emotional Healing</option>
+        <option value="childhood-trauma">Childhood Trauma</option>
+        <option value="self-care">Self-Care</option>
+        <option value="mental-health">Mental Health</option>
+        <option value="stress-management">Stress Management</option>
+        <!-- Add other conditions as needed -->
+    </select>
+
+    <!-- Keyword Search -->
+    <label for="search-keyword-health">Keyword Search:</label>
+    <input type="text" id="search-keyword-health" placeholder="Enter keyword">
+
+    <div class="filter-buttons">
+        <button onclick="applyFilters('health')">Apply Filters</button>
+        <button onclick="clearFilters('health')">Clear Filters</button>
+    </div>
+
+    <div class="book-category" id="mental-health">
+        <ul>
+            <!-- Book Item 1 -->
+            <li data-audience="individual therapist" data-condition="writing therapy emotional-healing">
+                <strong>Writing as a Way of Healing</strong> by Louise DeSalvo
+                <p>This book highlights the therapeutic benefits of writing for self-healing, providing exercises to process emotions and address trauma.</p>
+            </li>
+
+            <!-- Book Item 2 -->
+            <li data-audience="individual therapist" data-condition="childhood-trauma health-recovery">
+                <strong>Childhood Disrupted</strong> by Donna Jackson Nakazawa
+                <p>Explores the link between childhood trauma and adult health, covering Adverse Childhood Experiences (ACEs) and techniques for recovery.</p>
+            </li>
+
+            <!-- Book Item 3 -->
+            <li data-audience="individual neurodivergent caregiver" data-condition="adhd self-care mental-health">
+                <strong>Self-Care for People with ADHD</strong> by Sasha Hamdani, MD
+                <p>A guide for managing ADHD through self-care, covering organization, stress-relief, and emotional health for greater well-being.</p>
+            </li>
+
+            <!-- Book Item 4 -->
+            <li data-audience="individual therapist caregiver" data-condition="emotional-healing self-care mental-health">
+                <strong>Radical Acceptance</strong> by Tara Brach
+                <p>Teaches the practice of mindfulness and self-compassion to help individuals confront painful emotions and embrace life fully.</p>
+            </li>
+
+            <!-- Book Item 5 -->
+            <li data-audience="individual therapist caregiver" data-condition="childhood-trauma emotional-healing">
+                <strong>The Deepest Well</strong> by Nadine Burke Harris, MD
+                <p>Discusses the effects of childhood adversity on lifelong health and provides strategies for building resilience and healing.</p>
+            </li>
+
+            <!-- Book Item 6 -->
+            <li data-audience="individual therapist" data-condition="stress-management self-care">
+                <strong>The Relaxation and Stress Reduction Workbook</strong> by Martha Davis, PhD, Elizabeth Robbins Eshelman, and Matthew McKay, PhD
+                <p>A practical guide to managing stress through techniques such as progressive relaxation, breathing exercises, and visualization.</p>
+            </li>
+
+            <!-- Book Item 7 -->
+            <li data-audience="therapist individual" data-condition="emotional-healing mental-health">
+                <strong>It Didn't Start with You: How Inherited Family Trauma Shapes Who We Are</strong> by Mark Wolynn
+                <p>Explores how family trauma can be passed down through generations and provides tools to break these patterns for personal healing.</p>
+            </li>
+
+            <!-- Book Item 8 -->
+            <li data-audience="individual caregiver therapist" data-condition="mental-health stress-management self-care">
+                <strong>Burnout: The Secret to Unlocking the Stress Cycle</strong> by Emily Nagoski, PhD, and Amelia Nagoski, DMA
+                <p>Offers insights into how stress affects the body and mind, along with strategies to manage and prevent burnout effectively.</p>
+            </li>
+
+            <!-- Book Item 9 -->
+            <li data-audience="individual therapist" data-condition="emotional-healing self-care">
+                <strong>Lost Connections</strong> by Johann Hari
+                <p>Investigates the root causes of depression, such as lack of connection and purpose, and suggests a holistic approach to mental health and well-being.</p>
+            </li>
+
+            <!-- Book Item 10 -->
+            <li data-audience="individual therapist" data-condition="self-care mental-health emotional-healing">
+                <strong>Recovery: Freedom from Our Addictions</strong> by Russell Brand
+                <p>Offers a personal and practical approach to overcoming addiction through twelve-step principles, mindfulness, and self-reflection.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+// Function to apply filters for a given section
+function applyFilters(section) {
+    const audienceFilter = document.getElementById(`audience-filter-${section}`).value;
+    const conditionFilter = document.getElementById(`condition-filter-${section}`).value;
+    const keyword = document.getElementById(`search-keyword-${section}`).value.toLowerCase();
+    const bookItems = document.querySelectorAll(`#${section} ul li`);
+
+    // Filter books based on selected audience, condition, and keyword
+    bookItems.forEach(book => {
+        const audience = book.getAttribute('data-audience');
+        const condition = book.getAttribute('data-condition');
+        const title = book.querySelector('strong').textContent.toLowerCase();
+        const description = book.querySelector('p').textContent.toLowerCase();
+
+        const matchesAudience = !audienceFilter || audience.includes(audienceFilter);
+        const matchesCondition = !conditionFilter || condition.includes(conditionFilter);
+        const matchesKeyword = !keyword || title.includes(keyword) || description.includes(keyword);
+
+        // Show or hide the book item based on filters
+        book.style.display = matchesAudience && matchesCondition && matchesKeyword ? 'block' : 'none';
+    });
+}
+
+// Function to clear filters for a given section
+function clearFilters(section) {
+    // Reset filter dropdowns and keyword input
+    document.getElementById(`audience-filter-${section}`).value = "";
+    document.getElementById(`condition-filter-${section}`).value = "";
+    document.getElementById(`search-keyword-${section}`).value = "";
+
+    // Show all book items in the section
+    const bookItems = document.querySelectorAll(`#${section} ul li`);
+    bookItems.forEach(book => {
+        book.style.display = 'block';
+    });
+}
+</script>
