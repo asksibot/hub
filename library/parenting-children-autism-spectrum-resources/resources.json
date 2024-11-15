@@ -1,1 +1,194 @@
+{
+    "parenting-children-autism-spectrum-resources": [
+        {
+            "type": "book",
+            "title": "The Kids' Guide to Staying Awesome and in Control",
+            "author": "Lauren Brukner",
+            "description": "A practical guide for children to manage their emotions and sensory responses through exercises like deep breathing, movement, and self-regulation techniques. This book provides body-based strategies to help kids handle overwhelming emotions effectively. Strategies are categorized based on different emotional and physical states such as 'Fast & Wiggly,' 'Fast & Emotional,' and 'Slow & Tired,' making it easy for children to select suitable activities based on their current state.",
+            "key_sections": [
+                {
+                    "title": "Fast & Wiggly",
+                    "activities": [
+                        "Arm Pretzel",
+                        "Bubble Breath",
+                        "Palm Push",
+                        "Seat Push-Up",
+                        "Wall Push",
+                        "Crunchy Snacks",
+                        "Superman Pose",
+                        "Cross-Crawl"
+                    ]
+                },
+                {
+                    "title": "Fast & Emotional",
+                    "activities": [
+                        "Weighted Vest",
+                        "Gum",
+                        "Water Bottle with Straw",
+                        "Taking Space",
+                        "Cushion",
+                        "Firm Fidget",
+                        "Rocking Chair",
+                        "Lap Pad"
+                    ]
+                },
+                {
+                    "title": "Slow & Tired",
+                    "activities": [
+                        "Wobble Cushion",
+                        "Trampoline",
+                        "Arm Massage",
+                        "Bubble Breath",
+                        "Crab Walk",
+                        "Cross-Crawl",
+                        "Cold or Spicy Foods"
+                    ]
+                }
+            ],
+            "audience": ["parent-guardian", "caregiver", "therapist"],
+            "condition": ["autism-spectrum", "life-skills", "sensory-processing"],
+            "amazon_link": "https://www.amazon.com/Kids-Guide-Staying-Awesome-Control/dp/1849059977/ref=sr_1_1?adgrpid=1330409645943152&dib=eyJ2IjoiMSJ9.B27jN0x5PcTHjL4Y-weRqm5NuHX05zpXTrXMVIaCk2iiyHUdcn-Hxa5dVTsYaZa4KTI5gCL21Rj84rkKNGL49YA9l6WrBMyslCC02Yka-AnNpsEKt265k4Uc736-bFaru-UFLiVh2U8JTwoOBB1kjT04961ZVrpAc8o_xYJ1ZatTiUPOBGICVa_CCnN1mblxZbq4Bdx8hBLH1nAJyiog_NBunFbtnGGaXStPflU8HWo.dLVuePPqkPwLCid_f8wp5WrjELOjxhbPArp_BmnXJzo&dib_tag=se&hvadid=83150841264685&hvbmt=be&hvdev=c&hvlocphy=82639&hvnetw=o&hvqmt=e&hvtargid=kwd-83150971891502%3Aloc-190&hydadcr=22626_13494468&keywords=kids+guide+to+staying+awesome+and+in+control&msclkid=9da4d95eb17015bf105abe691a4cd582&qid=1731701572&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "A Parent's Guide to Asperger Syndrome & High-Functioning Autism",
+            "author": "Sally Ozonoff, Ph.D., Geraldine Dawson, Ph.D., and James McPartland, Ph.D.",
+            "description": "A comprehensive guide for supporting children with Asperger's Syndrome and high-functioning autism. It covers techniques to assist with social skills, communication, and daily living activities, empowering parents and caregivers to support children's development effectively.",
+            "audience": ["parent-guardian", "therapist"],
+            "condition": ["autism-spectrum", "sensory-processing"],
+            "amazon_link": ""
+        },
+        {
+            "type": "book",
+            "title": "The Out-of-Sync Child",
+            "author": "Carol Stock Kranowitz",
+            "description": "A foundational book on sensory processing disorder, providing insights into sensory challenges and practical strategies to help children who experience sensory integration issues. It serves as a comprehensive resource for understanding sensory processing disorder and guiding children in managing their sensory needs.",
+            "audience": ["caregiver", "therapist"],
+            "condition": ["life-skills", "sensory-processing"],
+            "amazon_link": "https://www.amazon.com/Out-Sync-Child-Third-Recognizing/dp/0593419413/ref=sr_1_1?crid=11MD7T4GHJM4P&dib=eyJ2IjoiMSJ9.r6_pPpAUxEb5jnzU9wi3Z7IvYn71jfrqIAC2QMmeogiqqGI1i8OZa47ypefrV2bQnP95FrgHWeXXSJlECuT5ko2SV2T-F853n5DP2jfyStGHQcahHyRYY4ooDUeVsdpDXSU5FlUFe9jmN-xXFrAXYVxH1Jjqtta4PjLM7miLEcTRVXbZbja50KR9H6FtFV8u-IO3Ad5c3OFhJ_YCozl5JlI7GSv-N0YPUILTE9zlnUc.7TmmKOVcraOos7DetXHsM0zsLP_ILU_KiwPDw4dEQo0&dib_tag=se&keywords=the+out+of+sync+child&qid=1731701660&sprefix=the+out+of+%2Caps%2C176&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "Uniquely Human: A Different Way of Seeing Autism",
+            "author": "Barry M. Prizant, Ph.D.",
+            "description": "A compassionate perspective on autism, emphasizing understanding behaviors as coping mechanisms rather than symptoms to be fixed. This book encourages parents and caregivers to build on strengths, offering a humane approach to supporting children on the autism spectrum.",
+            "audience": ["therapist", "parent-guardian"],
+            "condition": ["autism-spectrum", "sensory-processing"],
+            "amazon_link": "https://www.amazon.com/Uniquely-Human-Updated-Expanded-Different/dp/1982193891/ref=sr_1_1?adgrpid=1333708167713667&dib=eyJ2IjoiMSJ9.SuDhmwy0SbN-LO3eatdLJR5CHPN1hbwypwsL8wwtc1BnYDNmxVbErmJHx55vDfv6TUrbNBYm-aJOPzxer5rszFVq2JzLRVnK0jEmmEagIpY8r11AZJS1ZuVm660HG36cT9Gtuq9Qf4BzflRaiun9WsnqxfgIIU9aVcxrTswVsWX_khtN8wXOhxGOnEggLuaAl7KCkVxID_sLGAiagCiSKkRy3QfjxnHFBmfaP2NASwI.6xuyjGc3H3R3hh8eXgWlpOXfBXRxCg_x0h8YOWbm6N4&dib_tag=se&hvadid=83356999532011&hvbmt=be&hvdev=c&hvlocphy=82639&hvnetw=o&hvqmt=e&hvtargid=kwd-83357100991399%3Aloc-190&hydadcr=15589_13519423&keywords=uniquely+human+a+different+way+of+seeing+autism&msclkid=378ef155acb5120e9c5d96620708a3cf&qid=1731701697&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "Sensory and Motor Strategies",
+            "author": "Corinna Laurie",
+            "description": "This book provides sensory and motor strategies tailored for children with sensory processing needs. It includes photocopiable resources and strategies for managing different sensory systems such as proprioceptive, vestibular, and tactile. Key sections cover calming strategies, sensory treasure chest ideas, fine and gross motor skills development, and environmental modifications for creating sensory-friendly spaces.",
+            "key_sections": [
+                {
+                    "title": "Sensory Strategies for Under-Aroused, Over-Aroused, and Sensory-Seeking Students",
+                    "activities": []
+                },
+                {
+                    "title": "Environmental Modifications for Sensory Comfort",
+                    "activities": []
+                },
+                {
+                    "title": "Proprioception, Vestibular, and Tactile System Activities",
+                    "activities": []
+                },
+                {
+                    "title": "Photocopiable Resources (Sensory Treasure Chest, Fidget Toy Ideas, Therapy Ball Activities)",
+                    "activities": []
+                }
+            ],
+            "audience": ["parent-guardian", "caregiver", "therapist"],
+            "condition": ["autism-spectrum", "sensory-processing", "motor-skill-development"],
+            "amazon_link": "https://www.amazon.com/Sensory-Motor-Strategies-Practical-Autistic/dp/1839972726/ref=sr_1_1?crid=H8M8TFB517R9&dib=eyJ2IjoiMSJ9.NOjLiTRWa4ph2veX8C5IKacC6jZVOwDPHV_TP0p6qdKsR0Ik74VdUllOMmdpKqjTlUlfXoi6yc7rcfygPW1ptRooCP5gIy0f6UKh55ny-oPvyUEl-axRc9vRXSJPpg39C_7fBsshFh21jKfp_S0TUTQNYZGBMDoHwREzv58YeNnc92fvpOtlGiZk4zgTt8vqxSAeAwaBShy2urUVmNEFP7AJoAr84VCiuhd3ABrxtI8.iv8mjp0MNxLMjBfK5tVpZFXYwhhSObSn53ndpre6NaQ&dib_tag=se&keywords=Sensory+and+Motor+Strategies&qid=1731701737&sprefix=sensory+and+motor+strategies%2Caps%2C135&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "See It. Say It. Do It!",
+            "author": "Dr. Lynn F. Hellerstein",
+            "description": "This book provides parents and teachers with action guides to help children improve visualization skills. It focuses on enhancing children's confidence and success through visual exercises that help them internalize and practice skills.",
+            "audience": ["parent-guardian", "teacher", "therapist"],
+            "condition": ["autism-spectrum", "cognitive-development", "sensory-processing"],
+            "amazon_link": "https://www.amazon.com/Teachers-Creating-Successful-Students-Confident/dp/0984177906/ref=sr_1_1?crid=2FIXV9WBKIGP9P&dib=eyJ2IjoiMSJ9.60HWNxevz5iIsi5VFsySIV-cHwE3C00GdV88JeDVW2L9HkQiEQ5gNBDQi04I5ciGkYjvMX-8uQOM3vcJNenH8ViBtbIP_p-iT1krnD2v-PBu8h2YCU9scisFET3fAlEAg1rZHTVGlClnP95vRZ2p9Gh2q9lMEVCD-hcFIhnbHsg16Opl9XKgWXCNOWBXn68ldHuDTbo5oQuysgDdrQQSXzJKpsjwqUxn8MjpZP2MFKA.Xg-jDOSoVOzs9rqHpD3-zdlM5hr-A-8zLe_8xbi26mA&dib_tag=se&keywords=ee+It.+Say+It.+Do+It&qid=1731701775&sprefix=ee+it.+say+it.+do+it%2Caps%2C146&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "Awesome Everyday Family Activities",
+            "author": "Linda Williams",
+            "description": "A collection of unplugged games and adventures designed to promote family bonding. It includes activities suitable for weekends, road trips, vacations, and outdoor fun, encouraging sensory engagement in children.",
+            "audience": ["parent-guardian", "caregiver"],
+            "condition": ["life-skills", "sensory-processing", "family-engagement"],
+            "amazon_link": "https://www.amazon.com/Awesome-Everyday-Family-Activities-Unplugged/dp/1646432665/ref=sr_1_1?crid=2WJT4PZZIDO19&dib=eyJ2IjoiMSJ9.AdriMFZTzB2MqYYORhkl4669R6SUig6hLpxEIvxtg2Dw8YjlQOuuV5GONVVvXip6G33CxEktk_qCH09oU25sLGSQaR7k2bltUuFWm_Cj4EHh98DkxCIrAus0QkRkDPsi9qI2yh3_HzjZvc1ByXdXwqmcg9I5iMPDTGhXO5DfB52CrJT2quLGB7WC_9TTqrLP0X7iMY3-ckD5tMdAK6HjVgTgGp6LT2CYR5TzDFCdvu4.lLo6wco22mqyijf9FFZ84ZF93-6ihXeEz8bWV89xUFM&dib_tag=se&keywords=Awesome+Everyday+Family+Activities&qid=1731701804&sprefix=awesome+everyday+family+activities%2Caps%2C134&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "The Complete Guide to Asperger’s Syndrome",
+            "author": "Tony Attwood",
+            "description": "A comprehensive guide for understanding Asperger's Syndrome, providing in-depth information on symptoms, coping strategies, and methods to improve social and life skills in individuals with Asperger's.",
+            "audience": ["therapist", "parent-guardian", "caregiver"],
+            "condition": ["autism-spectrum", "life-skills", "cognitive-development"],
+            "amazon_link": "https://www.amazon.com/s?k=The+Complete+Guide+to+Asperger%E2%80%99s+Syndrome&crid=1OEJXRJQ529DU&sprefix=the+complete+guide+to+asperger+s+syndrome%2Caps%2C172&ref=nb_sb_noss_2"
+        },
+        {
+            "type": "book",
+            "title": "Sensory Secrets: How to Jump-Start Learning in Children",
+            "author": "Catherine Chemin Schneider, O.T.R.",
+            "description": "This book discusses sensory integration and its impact on learning, providing tools and strategies for parents and educators to assist children with sensory processing challenges.",
+            "audience": ["parent-guardian", "therapist", "teacher"],
+            "condition": ["sensory-processing", "life-skills", "cognitive-development"],
+            "amazon_link": "https://www.amazon.com/Sensory-Secrets-Jump-Start-Learning-Children/dp/0936785950/ref=sr_1_1?crid=X9G92VFPD5MI&dib=eyJ2IjoiMSJ9.-o4f8tcfGhAaTNT_4Pj6vA.xV3JN2AOAW-ocwEjYmRjSYyGz05NklQmgSkKI7VbujM&dib_tag=se&keywords=sensory+Secrets%3A+How+to+Jump-Start+Learning+in+Children&qid=1731701865&sprefix=sensory+secrets+how+to+jump-start+learning+in+children%2Caps%2C101&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "Self-Care for People with ADHD",
+            "author": "Sasha Hamdani, MD",
+            "description": "A self-care guide offering over 100 strategies for managing ADHD symptoms, focusing on recharging, de-stressing, and prioritizing mental health. Suitable for caregivers and individuals on the autism spectrum who may benefit from sensory self-regulation techniques.",
+            "audience": ["individual", "caregiver"],
+            "condition": ["autism-spectrum", "self-care", "mental-health"],
+            "amazon_link": "https://www.amazon.com/Self-Care-People-ADHD-Stress-Prioritize/dp/1507219431/ref=sr_1_1?crid=3H0G3Q1W2H5BU&dib=eyJ2IjoiMSJ9.Nky0D7gMvW-Gu6YZsHjL10wjXIoXINGpdMHDqHVFqH5UYiZE0NT3h_DCaxfHfZwLKwJ_F7BkH4cvHxBF-dHUjr-sGMGDL3oEfSJBnZzBhj8EyLjVkIaf3h78D5SQpufVyupPMBJ8kSSHVasO0uO6PN5NUqxUYEbtjwKKBL7keihnD19aJyGQap51GH1bdtS9FdguYXcZ6rOvDGBuAvMsAQdQ5nuJBEoApjBlGBKbyok.mq4iei0-T-GcTDBEPQTGuguuYPK_Lx2rwYdvSE0PuU8"
+        },
+        {
+            "type": "book",
+            "title": "Sensory Processing Solutions: Drug-Free Therapies to Realize Your Child's Potential",
+            "author": "Sally Fryer Dietz, PT, DPT, CLC, CST-D",
+            "description": "This guide explores drug-free therapies aimed at supporting children with sensory processing difficulties, with exercises and routines designed to help children reach their full potential through sensory integration practices.",
+            "audience": ["therapist", "parent-guardian", "caregiver"],
+            "condition": ["sensory-processing", "life-skills", "self-care"],
+            "amazon_link": "https://www.amazon.com/Sensory-Processing-Solutions-Drug-Free-Therapies/dp/1644117908/ref=sr_1_1?crid=3GE7DFMD26ZSO&dib=eyJ2IjoiMSJ9.vRp9Bx7_ttthB3hbhfBGqQ.FejPWpqB8b0mnrCKi3ysO8DcPzxDiLXpAX4JtZ1LVvo&dib_tag=se&keywords=%22Sensory+Processing+Solutions%3A+Drug-Free+Therapies+to+Realize+Your+Child%27s+Potential%22&qid=1731701920&sprefix=sensory+processing+solutions+drug-free+therapies+to+realize+your+child%27s+potential+%2Caps%2C156&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "How to Teach Life Skills to Kids with Autism or Asperger’s",
+            "author": "Jennifer McIlwee Myers",
+            "description": "Focusing on practical life skills, this book provides guidance for parents and educators on helping children with autism or Asperger's develop essential skills for independence and daily living.",
+            "audience": ["parent-guardian", "teacher", "therapist"],
+            "condition": ["autism-spectrum", "life-skills", "cognitive-development"],
+            "amazon_link": "https://www.amazon.com/Teach-Life-Skills-Autism-Aspergers/dp/1935274139/ref=sr_1_1?crid=18I775PQBZVD8&dib=eyJ2IjoiMSJ9.2oT7PY3Pcx4y5a5jqb7xR_zIGHDNQ7sX1ZhZ-ZlNkOE85ZKiBxrfkHwf1WKvJmPq.78wZyN-rLWUc0UW9FL853nhanedSl6GjV_zk2DYj7Hk&dib_tag=se&keywords=%22How+to+Teach+Life+Skills+to+Kids+with+Autism+or+Asperger%E2%80%99s&qid=1731701975&sprefix=how+to+teach+life+skills+to+kids+with+autism+or+asperger+s%2Caps%2C131&sr=8-1"
+        },
+        {
+            "type": "book",
+            "title": "Handbooks for Innovative Practice: Astronaut Training - A Sound Activated Vestibular-Visual Protocol",
+            "author": "Mary J. Kawar, MS, OTR, and Sheila M. Frick, OTR",
+            "description": "This handbook details an innovative protocol designed to stimulate vestibular and visual processing through sound activation, assisting children with sensory processing challenges.",
+            "audience": ["therapist", "teacher"],
+            "condition": ["sensory-processing", "life-skills", "cognitive-development"],
+            "amazon_link": "https://www.amazon.com/Astronaut-Training-Activated-Vestibular-Visual-Listening/dp/0971765316/ref=sr_1_1?crid=2HU5HVIIGKPKL&dib=eyJ2IjoiMSJ9.7ym2YWz9f8y0Bv9TOg0LYQ.nEZ8JoZ9jkyASGQUkl7KUYAZYh_MVERTKpgqNdv4yKE&dib_tag=se&keywords=Handbooks+for+Innovative+Practice%3A+Astronaut+Training+-+A+Sound+Activated+Vestibular-Visual+Protocol%22&qid=1731702000&sprefix=handbooks+for+innovative+practice+astronaut+training+-+a+sound+activated+vestibular-visual+protocol+%2Caps%2C127&sr=8-1"
+        },
+        {
+            "type": "activity",
+            "title": "Sensory Scavenger Hunt",
+            "description": "An interactive activity where children find items with specific textures, sounds, or colors, promoting sensory exploration and processing skills. This activity encourages children to explore and engage with different sensory stimuli.",
+            "audience": ["therapist", "caregiver"],
+            "condition": ["life-skills", "sensory-processing"]
+        },
+        {
+            "type": "activity",
+            "title": "Visual Schedule Creation",
+            "description": "A hands-on activity where children create their daily schedule using images, fostering routine-building skills and promoting independence. Visual schedules are particularly helpful for children with autism to understand and anticipate daily activities.",
+            "audience": ["parent-guardian", "therapist"],
+            "condition": ["life-skills", "autism-spectrum"]
+        }
+    ]
+}
 
