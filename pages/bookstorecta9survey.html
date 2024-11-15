@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey - Asksibot OT Hub Bookstore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #4e79a7;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Survey Form Styles */
+        .survey-form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .survey-form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .survey-form button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background-color: #4e79a7;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .survey-form button:hover {
+            background-color: #2f4b7c;
+        }
+
+        /* Modal Styles */
+        .modal-overlay { 
+            display: none; 
+            position: fixed; 
+            z-index: 999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 50%; 
+            top: 50%; 
+            width: 80%; 
+            max-width: 800px; 
+            transform: translate(-50%, -50%); 
+            background-color: #fff; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            overflow-y: auto; 
+            max-height: 80vh; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .modal-header { 
+            padding: 10px; 
+            background-color: #4e79a7; 
+            color: #fff; 
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-content { 
+            padding: 20px; 
+        }
+        .modal-close { 
+            font-size: 24px; 
+            cursor: pointer; 
+        }
+        .modal-actions { 
+            text-align: right; 
+            padding: 20px; 
+            border-top: 1px solid #ddd; 
+        }
+        .modal-actions button { 
+            padding: 10px 15px; 
+            font-size: 14px; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 5px; 
+            margin-left: 10px;
+        }
+        .print-btn { 
+            background-color: #FF5722; 
+            color: white; 
+        }
+        .pdf-btn { 
+            background-color: #9C27B0; 
+            color: white; 
+        }
+
+        /* CTA Buttons Styles */
+        .cta-buttons { 
+            margin-top: 15px; 
+        }
+        .cta-buttons button { 
+            margin-right: 10px; 
+            padding: 10px 15px; 
+            font-size: 14px; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 5px; 
+            color: white;
+        }
+        .buy-now { 
+            background-color: #4CAF50; 
+        }
+        .read-more { 
+            background-color: #2196F3; 
+        }
+        .wishlist { 
+            background-color: #FF9800; 
+        }
+
+        /* Recommendations Styles */
+        .recommendations h2 {
+            color: #4e79a7;
+            margin-bottom: 15px;
+        }
+
+        .recommendations ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .recommendations li {
+            margin-bottom: 10px;
+        }
+
+        .recommendations a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        .recommendations a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            .survey-form button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Asksibot OT Hub Bookstore Survey</h1>
+            <p>Please select your interest to receive tailored recommendations.</p>
+        </header>
+
+        <!-- Survey Form -->
+        <div class="survey-form">
+            <label for="user-interest">Which of the following best describes your interests:</label>
+            <select id="user-interest">
+                <option value="">-- Select an option --</option>
+                <option value="parent-guardian">Parent/Guardian - Responsible for children's upbringing and care.</option>
+                <option value="individual">Individual - Seeking information on sensory integration challenges.</option>
+                <option value="neurodivergent">Neurodivergent - Conditions like autism, ADHD, dyslexia, etc.</option>
+                <option value="caregiver">Caregiver - Providing care for someone else.</option>
+                <option value="therapist">Therapist - Managing and overcoming mental health issues.</option>
+                <option value="teacher">Teacher - Educating and guiding students.</option>
+                <!-- Add other options as needed -->
+            </select>
+
+            <button onclick="submitSurvey()">Get Recommendations</button>
+        </div>
+
+        <!-- Popup Modal -->
+        <div id="modal-overlay" class="modal-overlay"></div>
+        <div id="recommendation-modal" class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Recommended Resources</h2>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-content" id="modal-content">
+                <!-- Recommendations will be dynamically inserted here -->
+            </div>
+            <div class="modal-actions">
+                <button class="print-btn" onclick="printRecommendations()">Print</button>
+                <button class="pdf-btn" onclick="saveAsPDF()">Save as PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Handling Survey and Modal -->
+    <script>
+        // Sample Data: Replace with your actual data or fetch from an API
+        const recommendationsData = {
+            'parent-guardian': [
+                {
+                    title: 'Learning with Purpose',
+                    author: 'Jane Doe',
+                    description: 'This book explores effective strategies for enhancing cognitive development in the classroom.',
+                    link: 'https://example.com/buy-now-link.html',
+                    readMore: 'https://example.com/read-more-link.html'
+                },
+                {
+                    title: 'School Success Strategies',
+                    author: 'John Smith',
+                    description: 'Comprehensive techniques to foster a successful learning environment.',
+                    link: 'https://example.com/buy-now-link2.html',
+                    readMore: 'https://example.com/read-more-link2.html'
+                }
+                // Add more recommendations as needed
+            ],
+            'individual': [
+                {
+                    title: 'Social Stories for Success',
+                    author: 'Emily Clark',
+                    description: 'Personalized stories to navigate social situations and sensory challenges.',
+                    link: 'https://example.com/buy-now-link3.html',
+                    readMore: 'https://example.com/read-more-link3.html'
+                }
+                // Add more recommendations as needed
+            ],
+            'neurodivergent': [
+                {
+                    title: 'Understanding ADHD',
+                    author: 'Dr. Alex Johnson',
+                    description: 'Insights and strategies for managing ADHD effectively.',
+                    link: 'https://example.com/buy-now-link4.html',
+                    readMore: 'https://example.com/read-more-link4.html'
+                }
+                // Add more recommendations as needed
+            ],
+            'caregiver': [
+                {
+                    title: 'Caring for Loved Ones',
+                    author: 'Sarah Lee',
+                    description: 'Essential tips and strategies for caregivers managing daily challenges.',
+                    link: 'https://example.com/buy-now-link5.html',
+                    readMore: 'https://example.com/read-more-link5.html'
+                }
+                // Add more recommendations as needed
+            ],
+            'therapist': [
+                {
+                    title: 'Therapeutic Techniques',
+                    author: 'Dr. Michael Brown',
+                    description: 'Advanced therapeutic methods for effective client engagement.',
+                    link: 'https://example.com/buy-now-link6.html',
+                    readMore: 'https://example.com/read-more-link6.html'
+                }
+                // Add more recommendations as needed
+            ],
+            'teacher': [
+                {
+                    title: 'Innovative Teaching Methods',
+                    author: 'Linda Green',
+                    description: 'Modern approaches to enhance student learning and engagement.',
+                    link: 'https://example.com/buy-now-link7.html',
+                    readMore: 'https://example.com/read-more-link7.html'
+                }
+                // Add more recommendations as needed
+            ],
+            // Add other categories similarly
+        };
+
+        // Function to handle survey submission
+        function submitSurvey() {
+            const selectedInterest = document.getElementById('user-interest').value;
+
+            if (!selectedInterest) {
+                alert("Please select an option.");
+                return;
+            }
+
+            const recommendationList = document.getElementById('modal-content');
+
+            // Clear previous recommendations
+            recommendationList.innerHTML = '';
+
+            // Get recommendations based on selected interest
+            const selectedRecommendations = recommendationsData[selectedInterest] || [];
+
+            if (selectedRecommendations.length === 0) {
+                recommendationList.innerHTML = '<p>No recommendations found for your selection.</p>';
+            } else {
+                let content = '<ul>';
+                selectedRecommendations.forEach(rec => {
+                    content += `
+                        <li class="activity">
+                            <h3>${rec.title} by ${rec.author}</h3>
+                            <p><strong>Description:</strong> ${rec.description}</p>
+                            <div class="cta-buttons">
+                                <button class="buy-now" onclick="window.open('${rec.link}', '_blank')">Buy Now</button>
+                                <button class="read-more" onclick="window.open('${rec.readMore}', '_blank')">Read More</button>
+                                <button class="wishlist" onclick="addToWishlist('${rec.title}')">Add to Wishlist</button>
+                            </div>
+                        </li>
+                    `;
+                });
+                content += '</ul>';
+                recommendationList.innerHTML = content;
+            }
+
+            // Show recommendations in modal
+            showModal('Your Recommended Resources', recommendationList.innerHTML);
+        }
+
+        // Function to show modal with dynamic content
+        function showModal(title, content) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('modal-overlay').style.display = 'block';
+            document.getElementById('recommendation-modal').style.display = 'block';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none';
+            document.getElementById('recommendation-modal').style.display = 'none';
+        }
+
+        // Function to print recommendations
+        function printRecommendations() {
+            const printContent = document.getElementById('modal-content').innerHTML;
+            const originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+            location.reload(); // Reload to restore event listeners
+        }
+
+        // Function to save recommendations as PDF (simple implementation)
+        function saveAsPDF() {
+            window.print(); // For advanced PDF generation, consider using libraries like jsPDF
+        }
+
+        // Function to add a book to the wishlist
+        function addToWishlist(bookTitle) {
+            // Simple implementation: alert the user
+            alert(`${bookTitle} has been added to your wishlist!`);
+            // In a real application, implement persistent storage (e.g., localStorage or backend)
+        }
+
+        // Event listener to close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('recommendation-modal');
+            if (event.target == document.getElementById('modal-overlay')) {
+                closeModal();
+            }
+        }
+
+        // Note: No category navigation in survey.html, so no category click handling needed
+    </script>
+</body>
+</html>
