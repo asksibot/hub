@@ -1,0 +1,886 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Functioning Skills Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 10px;
+        }
+        h1, h2 {
+            text-align: center;
+            font-size: 1.5em;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section, .submit-section {
+            margin-bottom: 20px;
+        }
+        .rating-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+        .rating-grid input[type="radio"] {
+            margin: 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .result-box {
+            margin-top: 20px;
+        }
+        .submit-section {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 1.3em;
+            }
+            .rating-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3px;
+            }
+            .submit-section button {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+            .result-box {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Basic Information Section -->
+<div class="question-group">
+    
+    <div class="question">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="question">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1" required>
+    </div>
+    <div class="question">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+    </div>
+</div>
+    <!-- Executive Functioning Skills Section -->
+    <form id="surveyForm">
+        <div class="section">
+            <h2>Executive Functioning Skills</h2>
+            <p>Instructions: These questions help us understand your executive functioning skills. Please read each statement carefully and rate how well it describes you by checking the appropriate number.</p>
+            <p><strong>Rating Scale:</strong></p>
+            <ul>
+                <li>1 = Strongly disagree</li>
+                <li>2 = Disagree</li>
+                <li>3 = Somewhat disagree</li>
+                <li>4 = Neutral</li>
+                <li>5 = Somewhat agree</li>
+                <li>6 = Agree</li>
+                <li>7 = Strongly agree</li>
+            </ul>
+
+            <!-- Response Inhibition Section -->
+            <div class="section">
+                <h3>Response Inhibition</h3>
+                <div class="question">
+                    <label>1. I think before I act or speak.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response1" value="1">
+                        <input type="radio" name="response1" value="2">
+                        <input type="radio" name="response1" value="3">
+                        <input type="radio" name="response1" value="4">
+                        <input type="radio" name="response1" value="5">
+                        <input type="radio" name="response1" value="6">
+                        <input type="radio" name="response1" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>2. I can wait for my turn without interrupting others.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response2" value="1">
+                        <input type="radio" name="response2" value="2">
+                        <input type="radio" name="response2" value="3">
+                        <input type="radio" name="response2" value="4">
+                        <input type="radio" name="response2" value="5">
+                        <input type="radio" name="response2" value="6">
+                        <input type="radio" name="response2" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>3. I follow the rules even if I feel like breaking them.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response3" value="1">
+                        <input type="radio" name="response3" value="2">
+                        <input type="radio" name="response3" value="3">
+                        <input type="radio" name="response3" value="4">
+                        <input type="radio" name="response3" value="5">
+                        <input type="radio" name="response3" value="6">
+                        <input type="radio" name="response3" value="7">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Working Memory Section -->
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <div class="section">
+                <h3>Working Memory</h3>
+                <div class="question">
+                    <label>4. I remember what my teachers tell me to do during the day.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response4" value="1">
+                        <input type="radio" name="response4" value="2">
+                        <input type="radio" name="response4" value="3">
+                        <input type="radio" name="response4" value="4">
+                        <input type="radio" name="response4" value="5">
+                        <input type="radio" name="response4" value="6">
+                        <input type="radio" name="response4" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>5. I keep track of tasks and don’t need reminders.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response5" value="1">
+                        <input type="radio" name="response5" value="2">
+                        <input type="radio" name="response5" value="3">
+                        <input type="radio" name="response5" value="4">
+                        <input type="radio" name="response5" value="5">
+                        <input type="radio" name="response5" value="6">
+                        <input type="radio" name="response5" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>6. I can follow several steps of instructions at once.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response6" value="1">
+                        <input type="radio" name="response6" value="2">
+                        <input type="radio" name="response6" value="3">
+                        <input type="radio" name="response6" value="4">
+                        <input type="radio" name="response6" value="5">
+                        <input type="radio" name="response6" value="6">
+                        <input type="radio" name="response6" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Emotional Control Section -->
+            <div class="section">
+                <h3>Emotional Control</h3>
+                <div class="question">
+                    <label>7. I stay calm even when things don’t go my way.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response7" value="1">
+                        <input type="radio" name="response7" value="2">
+                        <input type="radio" name="response7" value="3">
+                        <input type="radio" name="response7" value="4">
+                        <input type="radio" name="response7" value="5">
+                        <input type="radio" name="response7" value="6">
+                        <input type="radio" name="response7" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>8. I don't let small things bother me too much.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response8" value="1">
+                        <input type="radio" name="response8" value="2">
+                        <input type="radio" name="response8" value="3">
+                        <input type="radio" name="response8" value="4">
+                        <input type="radio" name="response8" value="5">
+                        <input type="radio" name="response8" value="6">
+                        <input type="radio" name="response8" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>9. I can keep my emotions in check during school.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response9" value="1">
+                        <input type="radio" name="response9" value="2">
+                        <input type="radio" name="response9" value="3">
+                        <input type="radio" name="response9" value="4">
+                        <input type="radio" name="response9" value="5">
+                        <input type="radio" name="response9" value="6">
+                        <input type="radio" name="response9" value="7">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more sections here similarly for Task Initiation, Sustained Attention, Planning/Prioritization, Organization, Time Management, Flexibility, Goal-Directed Persistence, Metacognition, and Stress Tolerance -->
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+                        <!-- Task Initiation Section -->
+            <div class="section">
+                <h3>Task Initiation</h3>
+                <div class="question">
+                    <label>10. I start my homework or schoolwork right away when I’m asked.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response10" value="1">
+                        <input type="radio" name="response10" value="2">
+                        <input type="radio" name="response10" value="3">
+                        <input type="radio" name="response10" value="4">
+                        <input type="radio" name="response10" value="5">
+                        <input type="radio" name="response10" value="6">
+                        <input type="radio" name="response10" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>11. I don’t wait until the last minute to begin a task.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response11" value="1">
+                        <input type="radio" name="response11" value="2">
+                        <input type="radio" name="response11" value="3">
+                        <input type="radio" name="response11" value="4">
+                        <input type="radio" name="response11" value="5">
+                        <input type="radio" name="response11" value="6">
+                        <input type="radio" name="response11" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>12. I can begin work without needing someone to remind me.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response12" value="1">
+                        <input type="radio" name="response12" value="2">
+                        <input type="radio" name="response12" value="3">
+                        <input type="radio" name="response12" value="4">
+                        <input type="radio" name="response12" value="5">
+                        <input type="radio" name="response12" value="6">
+                        <input type="radio" name="response12" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Sustained Attention Section -->
+            <div class="section">
+                <h3>Sustained Attention</h3>
+                <div class="question">
+                    <label>13. I can focus on my schoolwork even when it gets boring.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response13" value="1">
+                        <input type="radio" name="response13" value="2">
+                        <input type="radio" name="response13" value="3">
+                        <input type="radio" name="response13" value="4">
+                        <input type="radio" name="response13" value="5">
+                        <input type="radio" name="response13" value="6">
+                        <input type="radio" name="response13" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>14. I finish my assignments without getting distracted easily.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response14" value="1">
+                        <input type="radio" name="response14" value="2">
+                        <input type="radio" name="response14" value="3">
+                        <input type="radio" name="response14" value="4">
+                        <input type="radio" name="response14" value="5">
+                        <input type="radio" name="response14" value="6">
+                        <input type="radio" name="response14" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>15. Even if I’m interrupted, I go back to work and finish it.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response15" value="1">
+                        <input type="radio" name="response15" value="2">
+                        <input type="radio" name="response15" value="3">
+                        <input type="radio" name="response15" value="4">
+                        <input type="radio" name="response15" value="5">
+                        <input type="radio" name="response15" value="6">
+                        <input type="radio" name="response15" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Planning/Prioritization Section -->
+            <div class="section">
+                <h3>Planning/Prioritization</h3>
+                <div class="question">
+                    <label>16. I can make a plan to get my work done in time.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response16" value="1">
+                        <input type="radio" name="response16" value="2">
+                        <input type="radio" name="response16" value="3">
+                        <input type="radio" name="response16" value="4">
+                        <input type="radio" name="response16" value="5">
+                        <input type="radio" name="response16" value="6">
+                        <input type="radio" name="response16" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>17. I break big tasks into smaller steps.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response17" value="1">
+                        <input type="radio" name="response17" value="2">
+                        <input type="radio" name="response17" value="3">
+                        <input type="radio" name="response17" value="4">
+                        <input type="radio" name="response17" value="5">
+                        <input type="radio" name="response17" value="6">
+                        <input type="radio" name="response17" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>18. I know which tasks are more important and work on them first.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response18" value="1">
+                        <input type="radio" name="response18" value="2">
+                        <input type="radio" name="response18" value="3">
+                        <input type="radio" name="response18" value="4">
+                        <input type="radio" name="response18" value="5">
+                        <input type="radio" name="response18" value="6">
+                        <input type="radio" name="response18" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Organization Section -->
+            <div class="section">
+                <h3>Organization</h3>
+                <div class="question">
+                    <label>19. I keep my desk or workspace organized.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response19" value="1">
+                        <input type="radio" name="response19" value="2">
+                        <input type="radio" name="response19" value="3">
+                        <input type="radio" name="response19" value="4">
+                        <input type="radio" name="response19" value="5">
+                        <input type="radio" name="response19" value="6">
+                        <input type="radio" name="response19" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>20. I know where my things are when I need them.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response20" value="1">
+                        <input type="radio" name="response20" value="2">
+                        <input type="radio" name="response20" value="3">
+                        <input type="radio" name="response20" value="4">
+                        <input type="radio" name="response20" value="5">
+                        <input type="radio" name="response20" value="6">
+                        <input type="radio" name="response20" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>21. I have a system for organizing my schoolwork.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response21" value="1">
+                        <input type="radio" name="response21" value="2">
+                        <input type="radio" name="response21" value="3">
+                        <input type="radio" name="response21" value="4">
+                        <input type="radio" name="response21" value="5">
+                        <input type="radio" name="response21" value="6">
+                        <input type="radio" name="response21" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Time Management Section -->
+            <div class="section">
+                <h3>Time Management</h3>
+                <div class="question">
+                    <label>22. I usually know how long my homework or chores will take.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response22" value="1">
+                        <input type="radio" name="response22" value="2">
+                        <input type="radio" name="response22" value="3">
+                        <input type="radio" name="response22" value="4">
+                        <input type="radio" name="response22" value="5">
+                        <input type="radio" name="response22" value="6">
+                        <input type="radio" name="response22" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>23. I can stick to a schedule and finish tasks on time.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response23" value="1">
+                        <input type="radio" name="response23" value="2">
+                        <input type="radio" name="response23" value="3">
+                        <input type="radio" name="response23" value="4">
+                        <input type="radio" name="response23" value="5">
+                        <input type="radio" name="response23" value="6">
+                        <input type="radio" name="response23" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>24. I don’t run out of time when completing schoolwork or assignments.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response24" value="1">
+                        <input type="radio" name="response24" value="2">
+                        <input type="radio" name="response24" value="3">
+                        <input type="radio" name="response24" value="4">
+                        <input type="radio" name="response24" value="5">
+                        <input type="radio" name="response24" value="6">
+                        <input type="radio" name="response24" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Flexibility Section -->
+            <div class="section">
+                <h3>Flexibility</h3>
+                <div class="question">
+                    <label>25. I can handle changes to my plans or routines.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response25" value="1">
+                        <input type="radio" name="response25" value="2">
+                        <input type="radio" name="response25" value="3">
+                        <input type="radio" name="response25" value="4">
+                        <input type="radio" name="response25" value="5">
+                        <input type="radio" name="response25" value="6">
+                        <input type="radio" name="response25" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>26. I can adapt when things don’t go as expected.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response26" value="1">
+                        <input type="radio" name="response26" value="2">
+                        <input type="radio" name="response26" value="3">
+                        <input type="radio" name="response26" value="4">
+                        <input type="radio" name="response26" value="5">
+                        <input type="radio" name="response26" value="6">
+                        <input type="radio" name="response26" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>27. I stay calm when things don't go the way I want them to.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response27" value="1">
+                        <input type="radio" name="response27" value="2">
+                        <input type="radio" name="response27" value="3">
+                        <input type="radio" name="response27" value="4">
+                        <input type="radio" name="response27" value="5">
+                        <input type="radio" name="response27" value="6">
+                        <input type="radio" name="response27" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Goal-Directed Persistence Section -->
+            <div class="section">
+                <h3>Goal-Directed Persistence</h3>
+                <div class="question">
+                    <label>28. I work towards my goals even if it takes a long time to achieve them.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response28" value="1">
+                        <input type="radio" name="response28" value="2">
+                        <input type="radio" name="response28" value="3">
+                        <input type="radio" name="response28" value="4">
+                        <input type="radio" name="response28" value="5">
+                        <input type="radio" name="response28" value="6">
+                        <input type="radio" name="response28" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>29. I can stay focused on what I need to do without being distracted by fun things.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response29" value="1">
+                        <input type="radio" name="response29" value="2">
+                        <input type="radio" name="response29" value="3">
+                        <input type="radio" name="response29" value="4">
+                        <input type="radio" name="response29" value="5">
+                        <input type="radio" name="response29" value="6">
+                        <input type="radio" name="response29" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>30. I don’t give up easily when something is hard.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response30" value="1">
+                        <input type="radio" name="response30" value="2">
+                        <input type="radio" name="response30" value="3">
+                        <input type="radio" name="response30" value="4">
+                        <input type="radio" name="response30" value="5">
+                        <input type="radio" name="response30" value="6">
+                        <input type="radio" name="response30" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Metacognition Section -->
+            <div class="section">
+                <h3>Metacognition</h3>
+                <div class="question">
+                    <label>31. I can figure out if I’m doing something right or wrong.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response31" value="1">
+                        <input type="radio" name="response31" value="2">
+                        <input type="radio" name="response31" value="3">
+                        <input type="radio" name="response31" value="4">
+                        <input type="radio" name="response31" value="5">
+                        <input type="radio" name="response31" value="6">
+                        <input type="radio" name="response31" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>32. I think about how I did after finishing a task and see where I can improve.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response32" value="1">
+                        <input type="radio" name="response32" value="2">
+                        <input type="radio" name="response32" value="3">
+                        <input type="radio" name="response32" value="4">
+                        <input type="radio" name="response32" value="5">
+                        <input type="radio" name="response32" value="6">
+                        <input type="radio" name="response32" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>33. I adjust my behavior based on feedback from teachers or adults.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response33" value="1">
+                        <input type="radio" name="response33" value="2">
+                        <input type="radio" name="response33" value="3">
+                        <input type="radio" name="response33" value="4">
+                        <input type="radio" name="response33" value="5">
+                        <input type="radio" name="response33" value="6">
+                        <input type="radio" name="response33" value="7">
+                    </div>
+                </div>
+            </div>
+<div class="rating-scale">
+    <p><strong>Rating Scale:</strong></p>
+    <ul>
+        <li>1 = Strongly disagree</li>
+        <li>2 = Disagree</li>
+        <li>3 = Somewhat disagree</li>
+        <li>4 = Neutral</li>
+        <li>5 = Somewhat agree</li>
+        <li>6 = Agree</li>
+        <li>7 = Strongly agree</li>
+    </ul>
+</div>
+            <!-- Stress Tolerance Section -->
+            <div class="section">
+                <h3>Stress Tolerance</h3>
+                <div class="question">
+                    <label>34. I stay calm when I have a lot to do or when things get tough.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response34" value="1">
+                        <input type="radio" name="response34" value="2">
+                        <input type="radio" name="response34" value="3">
+                        <input type="radio" name="response34" value="4">
+                        <input type="radio" name="response34" value="5">
+                        <input type="radio" name="response34" value="6">
+                        <input type="radio" name="response34" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>35. I can handle stressful situations without feeling overwhelmed.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response35" value="1">
+                        <input type="radio" name="response35" value="2">
+                        <input type="radio" name="response35" value="3">
+                        <input type="radio" name="response35" value="4">
+                        <input type="radio" name="response35" value="5">
+                        <input type="radio" name="response35" value="6">
+                        <input type="radio" name="response35" value="7">
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>36. I work best when there’s a bit of pressure.</label>
+                    <div class="rating-grid">
+                        <label>1</label><label>2</label><label>3</label><label>4</label><label>5</label><label>6</label><label>7</label>
+                        <input type="radio" name="response36" value="1">
+                        <input type="radio" name="response36" value="2">
+                        <input type="radio" name="response36" value="3">
+                        <input type="radio" name="response36" value="4">
+                        <input type="radio" name="response36" value="5">
+                        <input type="radio" name="response36" value="6">
+                        <input type="radio" name="response36" value="7">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example of more sections being added -->
+            <!-- Continue adding similar sections with questions and corresponding rating options -->
+
+<div class="submit-section">
+    <button type="submit">Submit</button>
+</div>
+</form>
+
+<div id="result" class="result-box"></div>
+
+<script>
+// Function to handle form submission and generate summary of responses
+document.getElementById('surveyForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Capture name, age, and date values
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const date = document.getElementById('date').value;
+
+    // Variables to track areas of strength and potential challenges
+    let strengths = [];
+    let challenges = [];
+
+    // Function to evaluate a response
+    function evaluateResponse(name, description) {
+        let value = document.querySelector(`input[name="${name}"]:checked`)?.value;
+        if (value) {
+            value = parseInt(value);
+            if (value >= 6) {
+                strengths.push(description);
+            } else if (value <= 3) {
+                challenges.push(description);
+            }
+        }
+    }
+
+    // Evaluate responses
+    evaluateResponse("response1", "Thinking before acting or speaking");
+    evaluateResponse("response2", "Waiting without interrupting others");
+    evaluateResponse("response3", "Following rules");
+    evaluateResponse("response4", "Remembering instructions");
+    evaluateResponse("response5", "Keeping track of tasks");
+    evaluateResponse("response6", "Following multiple-step instructions");
+    evaluateResponse("response7", "Staying calm when things don't go your way");
+    evaluateResponse("response8", "Not letting small things bother you");
+    evaluateResponse("response9", "Keeping emotions in check at school");
+    evaluateResponse("response10", "Starting work promptly when asked");
+    evaluateResponse("response11", "Avoiding procrastination");
+    evaluateResponse("response12", "Beginning work without reminders");
+    evaluateResponse("response13", "Focusing on schoolwork even when boring");
+    evaluateResponse("response14", "Finishing assignments without getting distracted");
+    evaluateResponse("response15", "Returning to work after interruptions");
+    evaluateResponse("response16", "Making plans to complete work on time");
+    evaluateResponse("response17", "Breaking tasks into smaller steps");
+    evaluateResponse("response18", "Prioritizing important tasks");
+    evaluateResponse("response19", "Keeping workspace organized");
+    evaluateResponse("response20", "Knowing where things are when needed");
+    evaluateResponse("response21", "Having a system for organizing schoolwork");
+    evaluateResponse("response22", "Estimating how long tasks will take");
+    evaluateResponse("response23", "Sticking to schedules and deadlines");
+    evaluateResponse("response24", "Completing work without running out of time");
+    evaluateResponse("response25", "Handling changes to plans or routines");
+    evaluateResponse("response26", "Adapting when things don't go as expected");
+    evaluateResponse("response27", "Staying calm when things don't go your way");
+    evaluateResponse("response28", "Working towards long-term goals");
+    evaluateResponse("response29", "Staying focused without being distracted by fun things");
+    evaluateResponse("response30", "Persisting when tasks are difficult");
+    evaluateResponse("response31", "Recognizing if you're doing something right or wrong");
+    evaluateResponse("response32", "Reflecting on performance to improve");
+    evaluateResponse("response33", "Adjusting behavior based on feedback");
+    evaluateResponse("response34", "Staying calm under pressure");
+    evaluateResponse("response35", "Handling stressful situations without feeling overwhelmed");
+    evaluateResponse("response36", "Performing well when there's a bit of pressure");
+
+    // Generate the result summary
+    let resultHtml = `<h2>Your Executive Functioning Profile</h2>`;
+    resultHtml += `<h3>Strengths:</h3>`;
+    resultHtml += strengths.length > 0 ? `<ul><li>${strengths.join('</li><li>')}</li></ul>` : `<p>No strengths identified.</p>`;
+
+    resultHtml += `<h3>Challenges:</h3>`;
+    resultHtml += challenges.length > 0 ? `<ul><li>${challenges.join('</li><li>')}</li></ul>` : `<p>No challenges identified.</p>`;
+
+    document.getElementById('result').innerHTML = resultHtml;
+
+    // Create a downloadable file of the results
+    let resultText = `Your Executive Functioning Profile\n\nName: ${name}\nAge: ${age}\nDate: ${date}\n\nStrengths:\n${strengths.length > 0 ? strengths.join('\n') : 'No strengths identified.'}\n\nChallenges:\n${challenges.length > 0 ? challenges.join('\n') : 'No challenges identified.'}`;
+    createDownloadLink(resultText);
+});
+      
+// Function to create a downloadable text file of the results
+function createDownloadLink(text) {
+    const blob = new Blob([text], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'executive_functioning_results.txt';
+    link.textContent = 'Download Your Results';
+    link.style.display = 'inline-block';
+    link.style.marginTop = '20px';
+    link.style.padding = '10px 20px';
+    link.style.backgroundColor = '#007BFF';
+    link.style.color = '#fff';
+    link.style.textDecoration = 'none';
+    link.style.borderRadius = '5px';
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.appendChild(document.createElement('br'));
+    resultDiv.appendChild(link);
+}
+</script>
+        
+        </body>
+        </html>
