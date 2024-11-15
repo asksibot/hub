@@ -1,0 +1,81 @@
+<div class="filter-section">
+    <h2>Education & Learning</h2>
+    
+    <!-- Audience Filter -->
+    <label for="audience-filter-education">Select Audience:</label>
+    <select id="audience-filter-education">
+        <option value="">All</option>
+        <option value="teacher">Teacher</option>
+        <option value="parent-guardian">Parent/Guardian</option>
+        <option value="therapist">Therapist</option>
+        <option value="individual">Individual</option>
+        <!-- Add other audiences as needed -->
+    </select>
+
+    <!-- Condition Filter -->
+    <label for="condition-filter-education">Select Condition:</label>
+    <select id="condition-filter-education">
+        <option value="">All</option>
+        <option value="education">Education</option>
+        <option value="cognitive-development">Cognitive Development</option>
+        <option value="memory">Memory</option>
+        <option value="web-design">Web Design</option>
+        <option value="school-success">School Success</option>
+        <!-- Add other conditions as needed -->
+    </select>
+
+    <!-- Keyword Search -->
+    <label for="search-keyword-education">Keyword Search:</label>
+    <input type="text" id="search-keyword-education" placeholder="Enter keyword">
+
+    <div class="filter-buttons">
+        <button onclick="applyFilters('education')">Apply Filters</button>
+        <button onclick="clearFilters('education')">Clear Filters</button>
+    </div>
+
+    <div class="book-category" id="education">
+        <ul>
+            <!-- Book Item 1 -->
+            <li data-audience="teacher parent-guardian therapist" data-condition="education school-success equity">
+                <strong>Achieving Equity & Excellence</strong> by Douglas Reeves
+                <p>Explores successful strategies from high-poverty, high-success schools that can help achieve educational equity and excellence, focusing on data-driven instruction, teacher collaboration, and community engagement.</p>
+            </li>
+            
+            <!-- Book Item 2 -->
+            <li data-audience="individual teacher" data-condition="anthropology culture personal-growth">
+                <strong>The Art of Being Human</strong> by Michael Wesch
+                <p>An introduction to anthropology that examines themes of cultural identity, empathy, human connection, and finding purpose in modern society, offering insights into understanding humanity and diversity.</p>
+            </li>
+            
+            <!-- Book Item 3 -->
+            <li data-audience="individual teacher" data-condition="memory cognitive-development psychology">
+                <strong>The Power of Memory</strong> (Special Health Edition)
+                <p>A comprehensive magazine covering the science of memory, including memory mechanics, strategies for memory improvement, managing traumatic memories, and understanding the relationship between memory and identity.</p>
+            </li>
+
+            <!-- Book Item 4 -->
+            <li data-audience="individual teacher" data-condition="web-design usability digital-skills">
+                <strong>Don’t Make Me Think, Revisited</strong> by Steve Krug
+                <p>A guide to user-friendly web design principles, focusing on usability, simplicity, user testing, and designing for both desktop and mobile applications, making it an essential resource for creating intuitive websites.</p>
+            </li>
+
+            <!-- Book Item 5 -->
+            <li data-audience="teacher parent-guardian" data-condition="cognitive-development educational-skills">
+                <strong>Mind in the Making: The Seven Essential Life Skills Every Child Needs</strong> by Ellen Galinsky
+                <p>Focuses on developing essential life skills in children, such as focus, self-control, perspective-taking, and critical thinking, with actionable strategies for parents and educators.</p>
+            </li>
+
+            <!-- Book Item 6 -->
+            <li data-audience="teacher parent-guardian" data-condition="learning-strategies memory">
+                <strong>Make It Stick: The Science of Successful Learning</strong> by Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel
+                <p>Explores effective learning techniques, debunking myths about studying, and emphasizing strategies like spaced repetition, retrieval practice, and applying concepts in new contexts.</p>
+            </li>
+
+            <!-- Book Item 7 -->
+            <li data-audience="teacher parent-guardian" data-condition="creativity educational-techniques">
+                <strong>Spark: The Revolutionary New Science of Exercise and the Brain</strong> by John J. Ratey
+                <p>Discusses how physical exercise improves brain function, boosts cognitive performance, and enhances focus, making it a valuable resource for educators aiming to incorporate movement into learning environments.</p>
+            </li>
+        </ul>
+    </div>
+</div>
