@@ -1,0 +1,954 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating My Sensory World: Understanding How I Process Information</title>
+    <style>
+    /* Updated Styles for Responsive and Compact Layout */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 10px;
+        padding: 10px;
+    }
+    h1, h2 {
+        text-align: center;
+        font-size: 1.5em;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .section, .submit-section, .question-group {
+        margin-bottom: 20px;
+    }
+    .question {
+        margin-bottom: 15px; /* Space between questions and Likert scale */
+    }
+    .rating-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+        text-align: center;
+    }
+    .rating-grid input[type="radio"] {
+        margin: 0;
+    }
+    .submit-btn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    #summary {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        h1, h2 {
+            font-size: 1.3em;
+        }
+        .rating-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+        }
+        .submit-btn {
+            font-size: 14px;
+            padding: 8px 15px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .rating-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+    }
+</style>
+</head>
+<body>
+    <h1>Navigating My Sensory World: Understanding How I Process Information</h1>
+    <form id="sensoryProfileForm">        <!-- Basic Information Section -->
+        <div class="question-group">
+            <h2>Basic Information</h2>
+            <div class="question">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" required>
+            </div>
+            <div class="question">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+        </div>
+
+        <!-- Daily Life Satisfaction Question -->
+        <div class="question-group">
+            <h2>Daily Life Satisfaction</h2>
+            <p>Are there aspects of daily life that are not satisfying to you?</p>
+            <label><input type="radio" name="satisfaction" value="No" onclick="toggleExplanation(false)" required> No</label>
+            <label><input type="radio" name="satisfaction" value="Yes" onclick="toggleExplanation(true)"> Yes</label>
+            <div id="explanation" style="display: none; margin-top: 10px;">
+                <label for="explanationText">If yes, please explain:</label>
+                <textarea id="explanationText" name="explanationText" rows="4" cols="50"></textarea>
+            </div>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="question-group">
+            <h2>Instructions</h2>
+            <p>Please check the box that best describes the frequency with which you experience the following behaviors:</p>
+            <ul>
+                <li><strong>1 - Almost Never</strong>: About 5% or less of the time</li>
+                <li><strong>2 - Seldom</strong>: About 25% of the time</li>
+                <li><strong>3 - Occasionally</strong>: About 50% of the time</li>
+                <li><strong>4 - Frequently</strong>: About 75% of the time</li>
+                <li><strong>5 - Almost Always</strong>: About 95% or more of the time</li>
+            </ul>
+        </div>
+ <!-- Placeholder for Taste/Smell Processing Questions -->
+                <!-- Taste/Smell Processing Questions -->
+                <div class="question-group">
+                    <h2>Taste/Smell Processing</h2>
+                    
+                    <!-- Question 1 -->
+                    <div class="question">
+                        <p>1. I leave or move to another section when I smell a strong odor in a store (e.g., bath products, candles, perfumes).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q1" value="2"> Seldom</label>
+                            <label><input type="radio" name="q1" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q1" value="4"> Frequently</label>
+                            <label><input type="radio" name="q1" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 2 -->
+                    <div class="question">
+                        <p>2. I add spice to my food.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q2" value="2"> Seldom</label>
+                            <label><input type="radio" name="q2" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q2" value="4"> Frequently</label>
+                            <label><input type="radio" name="q2" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 3 -->
+                    <div class="question">
+                        <p>3. I don't smell things that other people say they smell.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q3" value="2"> Seldom</label>
+                            <label><input type="radio" name="q3" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q3" value="4"> Frequently</label>
+                            <label><input type="radio" name="q3" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 4 -->
+                    <div class="question">
+                        <p>4. I enjoy being close to people who wear perfume or cologne.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q4" value="2"> Seldom</label>
+                            <label><input type="radio" name="q4" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q4" value="4"> Frequently</label>
+                            <label><input type="radio" name="q4" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 5 -->
+                    <div class="question">
+                        <p>5. I only eat familiar foods.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q5" value="2"> Seldom</label>
+                            <label><input type="radio" name="q5" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q5" value="4"> Frequently</label>
+                            <label><input type="radio" name="q5" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 6 -->
+                    <div class="question">
+                        <p>6. Many foods taste bland to me (in other words, food tastes plain or does not have a lot of flavor).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q6" value="2"> Seldom</label>
+                            <label><input type="radio" name="q6" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q6" value="4"> Frequently</label>
+                            <label><input type="radio" name="q6" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 7 -->
+                    <div class="question">
+                        <p>7. I don't like strong tasting mints or candies (for example, hot/cinnamon or sour candy).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q7" value="2"> Seldom</label>
+                            <label><input type="radio" name="q7" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q7" value="4"> Frequently</label>
+                            <label><input type="radio" name="q7" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 8 -->
+                    <div class="question">
+                        <p>8. I go over to smell fresh flowers when I see them.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q8" value="2"> Seldom</label>
+                            <label><input type="radio" name="q8" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q8" value="4"> Frequently</label>
+                            <label><input type="radio" name="q8" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Movement Processing Questions -->
+                <div class="question-group">
+                    <h2>Movement Processing</h2>
+        
+                    <!-- Question 9 -->
+                    <div class="question">
+                        <p>9. I'm afraid of heights.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q9" value="2"> Seldom</label>
+                            <label><input type="radio" name="q9" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q9" value="4"> Frequently</label>
+                            <label><input type="radio" name="q9" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 10 -->
+                    <div class="question">
+                        <p>10. I enjoy how it feels to move about (for example, dancing, running).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q10" value="2"> Seldom</label>
+                            <label><input type="radio" name="q10" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q10" value="4"> Frequently</label>
+                            <label><input type="radio" name="q10" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 11 -->
+                    <div class="question">
+                        <p>11. I avoid elevators and/or escalators because I dislike the movement.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q11" value="2"> Seldom</label>
+                            <label><input type="radio" name="q11" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q11" value="4"> Frequently</label>
+                            <label><input type="radio" name="q11" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 12 -->
+                    <div class="question">
+                        <p>12. I dislike the movement of riding in a car.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q12" value="2"> Seldom</label>
+                            <label><input type="radio" name="q12" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q12" value="4"> Frequently</label>
+                            <label><input type="radio" name="q12" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 13 -->
+                    <div class="question">
+                        <p>13. I choose to engage in physical activities.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q13" value="2"> Seldom</label>
+                            <label><input type="radio" name="q13" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q13" value="4"> Frequently</label>
+                            <label><input type="radio" name="q13" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 14 -->
+                    <div class="question">
+                        <p>14. I am unsure of footing when walking on stairs (for example, I trip, lose balance, and/or need to hold the rail).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q14" value="2"> Seldom</label>
+                            <label><input type="radio" name="q14" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q14" value="4"> Frequently</label>
+                            <label><input type="radio" name="q14" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 15 -->
+                    <div class="question">
+                        <p>15. I trip or bump into things.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q15" value="2"> Seldom</label>
+                            <label><input type="radio" name="q15" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q15" value="4"> Frequently</label>
+                            <label><input type="radio" name="q15" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 16 -->
+                    <div class="question">
+                        <p>16. I become dizzy easily (for example, after bending over, getting up too fast).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q16" value="2"> Seldom</label>
+                            <label><input type="radio" name="q16" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q16" value="4"> Frequently</label>
+                            <label><input type="radio" name="q16" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Visual Processing Questions -->
+                <div class="question-group">
+                    <h2>Visual Processing</h2>
+        
+                    <!-- Question 17 -->
+                    <div class="question">
+                        <p>17. I like to go to places that have bright lights and that are colorful.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q17" value="2"> Seldom</label>
+                            <label><input type="radio" name="q17" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q17" value="4"> Frequently</label>
+                            <label><input type="radio" name="q17" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 18 -->
+                    <div class="question">
+                        <p>18. I keep the shades down during the day when I am at home.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q18" value="2"> Seldom</label>
+                            <label><input type="radio" name="q18" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q18" value="4"> Frequently</label>
+                            <label><input type="radio" name="q18" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 19 -->
+                    <div class="question">
+                        <p>19. I like to wear colorful clothing.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q19" value="2"> Seldom</label>
+                            <label><input type="radio" name="q19" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q19" value="4"> Frequently</label>
+                            <label><input type="radio" name="q19" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 20 -->
+                    <div class="question">
+                        <p>20. I become frustrated when trying to find something in a crowded drawer or messy room.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q20" value="2"> Seldom</label>
+                            <label><input type="radio" name="q20" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q20" value="4"> Frequently</label>
+                            <label><input type="radio" name="q20" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 21 -->
+                    <div class="question">
+                        <p>21. I miss the street, building, or room signs when trying to go somewhere new.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q21" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q21" value="2"> Seldom</label>
+                            <label><input type="radio" name="q21" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q21" value="4"> Frequently</label>
+                            <label><input type="radio" name="q21" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 22 -->
+                    <div class="question">
+                        <p>22. I am bothered by unsteady or fast-moving visual images in movies or TV.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q22" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q22" value="2"> Seldom</label>
+                            <label><input type="radio" name="q22" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q22" value="4"> Frequently</label>
+                            <label><input type="radio" name="q22" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 23 -->
+                    <div class="question">
+                        <p>23. I don’t notice when people come into the room.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q23" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q23" value="2"> Seldom</label>
+                            <label><input type="radio" name="q23" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q23" value="4"> Frequently</label>
+                            <label><input type="radio" name="q23" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 24 -->
+                    <div class="question">
+                        <p>24. I choose to shop in smaller stores because I'm overwhelmed in large stores.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q24" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q24" value="2"> Seldom</label>
+                            <label><input type="radio" name="q24" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q24" value="4"> Frequently</label>
+                            <label><input type="radio" name="q24" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 25 -->
+                    <div class="question">
+                        <p>25. I become bothered when I see lots of movement around me (for example, at a busy mall, parade, carnival).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q25" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q25" value="2"> Seldom</label>
+                            <label><input type="radio" name="q25" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q25" value="4"> Frequently</label>
+                            <label><input type="radio" name="q25" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 26 -->
+                    <div class="question">
+                        <p>26. I limit distractions when I am working (for example, I close the door or turn off the TV).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q26" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q26" value="2"> Seldom</label>
+                            <label><input type="radio" name="q26" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q26" value="4"> Frequently</label>
+                            <label><input type="radio" name="q26" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Touch Processing Questions -->
+                <div class="question-group">
+                    <h2>Touch Processing</h2>
+        
+                    <!-- Question 27 -->
+                    <div class="question">
+                        <p>27. I dislike having my back rubbed.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q27" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q27" value="2"> Seldom</label>
+                            <label><input type="radio" name="q27" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q27" value="4"> Frequently</label>
+                            <label><input type="radio" name="q27" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 28 -->
+                    <div class="question">
+                        <p>28. I like how it feels to get my hair cut.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q28" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q28" value="2"> Seldom</label>
+                            <label><input type="radio" name="q28" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q28" value="4"> Frequently</label>
+                            <label><input type="radio" name="q28" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 29 -->
+                    <div class="question">
+                        <p>29. I avoid or wear gloves during activities that will make my hands messy.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q29" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q29" value="2"> Seldom</label>
+                            <label><input type="radio" name="q29" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q29" value="4"> Frequently</label>
+                            <label><input type="radio" name="q29" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 30 -->
+                    <div class="question">
+                        <p>30. I touch others when I’m talking (for example, I put my hand on their shoulder or shake their hand).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q30" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q30" value="2"> Seldom</label>
+                            <label><input type="radio" name="q30" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q30" value="4"> Frequently</label>
+                            <label><input type="radio" name="q30" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 31 -->
+                    <div class="question">
+                        <p>31. I am bothered by the feeling in my mouth when I wake up in the morning.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q31" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q31" value="2"> Seldom</label>
+                            <label><input type="radio" name="q31" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q31" value="4"> Frequently</label>
+                            <label><input type="radio" name="q31" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 32 -->
+                    <div class="question">
+                        <p>32. I like to go barefoot.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q32" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q32" value="2"> Seldom</label>
+                            <label><input type="radio" name="q32" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q32" value="4"> Frequently</label>
+                            <label><input type="radio" name="q32" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 33 -->
+                    <div class="question">
+                        <p>33. I’m uncomfortable wearing certain fabrics (for example, wool, silk, corduroy, tags in clothing).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q33" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q33" value="2"> Seldom</label>
+                            <label><input type="radio" name="q33" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q33" value="4"> Frequently</label>
+                            <label><input type="radio" name="q33" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 34 -->
+                    <div class="question">
+                        <p>34. I don’t like particular food textures (for example, peaches with skin, applesauce, cottage cheese, chunky peanut butter).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q34" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q34" value="2"> Seldom</label>
+                            <label><input type="radio" name="q34" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q34" value="4"> Frequently</label>
+                            <label><input type="radio" name="q34" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 35 -->
+                    <div class="question">
+                        <p>35. I move away when others get too close to me.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q35" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q35" value="2"> Seldom</label>
+                            <label><input type="radio" name="q35" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q35" value="4"> Frequently</label>
+                            <label><input type="radio" name="q35" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 36 -->
+                    <div class="question">
+                        <p>36. I don’t seem to notice when my face or hands are dirty.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q36" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q36" value="2"> Seldom</label>
+                            <label><input type="radio" name="q36" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q36" value="4"> Frequently</label>
+                            <label><input type="radio" name="q36" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 37 -->
+                    <div class="question">
+                        <p>37. I get scrapes or bruises but don’t remember how I got them.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q37" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q37" value="2"> Seldom</label>
+                            <label><input type="radio" name="q37" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q37" value="4"> Frequently</label>
+                            <label><input type="radio" name="q37" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 38 -->
+                    <div class="question">
+                        <p>38. I avoid standing in lines or standing close to other people because I don’t like to get too close to others.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q38" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q38" value="2"> Seldom</label>
+                            <label><input type="radio" name="q38" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q38" value="4"> Frequently</label>
+                            <label><input type="radio" name="q38" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 39 -->
+                    <div class="question">
+                        <p>39. I don’t seem to notice when someone touches my arm or back.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q39" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q39" value="2"> Seldom</label>
+                            <label><input type="radio" name="q39" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q39" value="4"> Frequently</label>
+                            <label><input type="radio" name="q39" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Activity Level Questions -->
+                <div class="question-group">
+                    <h2>Activity Level</h2>
+        
+                    <!-- Question 40 -->
+                    <div class="question">
+                        <p>40. I work on two or more tasks at the same time.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q40" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q40" value="2"> Seldom</label>
+                            <label><input type="radio" name="q40" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q40" value="4"> Frequently</label>
+                            <label><input type="radio" name="q40" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 41 -->
+                    <div class="question">
+                        <p>41. It takes me more time than other people to wake up in the morning.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q41" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q41" value="2"> Seldom</label>
+                            <label><input type="radio" name="q41" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q41" value="4"> Frequently</label>
+                            <label><input type="radio" name="q41" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 42 -->
+                    <div class="question">
+                        <p>42. I do things on the spur of the moment (in other words, I do things without making a plan ahead of time).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q42" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q42" value="2"> Seldom</label>
+                            <label><input type="radio" name="q42" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q42" value="4"> Frequently</label>
+                            <label><input type="radio" name="q42" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 43 -->
+                    <div class="question">
+                        <p>43. I find time to get away from my busy life and spend time by myself.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q43" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q43" value="2"> Seldom</label>
+                            <label><input type="radio" name="q43" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q43" value="4"> Frequently</label>
+                            <label><input type="radio" name="q43" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 44 -->
+                    <div class="question">
+                        <p>44. I seem slower than others when trying to follow an activity or task.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q44" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q44" value="2"> Seldom</label>
+                            <label><input type="radio" name="q44" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q44" value="4"> Frequently</label>
+                            <label><input type="radio" name="q44" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 45 -->
+                    <div class="question">
+                        <p>45. I don’t get jokes as quickly as others.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q45" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q45" value="2"> Seldom</label>
+                            <label><input type="radio" name="q45" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q45" value="4"> Frequently</label>
+                            <label><input type="radio" name="q45" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 46 -->
+                    <div class="question">
+                        <p>46. I stay away from crowds.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q46" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q46" value="2"> Seldom</label>
+                            <label><input type="radio" name="q46" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q46" value="4"> Frequently</label>
+                            <label><input type="radio" name="q46" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 47 -->
+                    <div class="question">
+                        <p>47. I find activities to perform in front of others (for example, music, sports, acting, public speaking, and answering questions in class).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q47" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q47" value="2"> Seldom</label>
+                            <label><input type="radio" name="q47" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q47" value="4"> Frequently</label>
+                            <label><input type="radio" name="q47" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 48 -->
+                    <div class="question">
+                        <p>48. I find it hard to concentrate for the whole time when sitting in a long class or a meeting.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q48" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q48" value="2"> Seldom</label>
+                            <label><input type="radio" name="q48" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q48" value="4"> Frequently</label>
+                            <label><input type="radio" name="q48" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+        
+                    <!-- Question 49 -->
+                    <div class="question">
+                        <p>49. I avoid situations where unexpected things might happen (for example, going to unfamiliar places or being around people I don’t know).</p>
+                        <div class="options">
+                            <label><input type="radio" name="q49" value="1"> Almost Never</label>
+                            <label><input type="radio" name="q49" value="2"> Seldom</label>
+                            <label><input type="radio" name="q49" value="3"> Occasionally</label>
+                            <label><input type="radio" name="q49" value="4"> Frequently</label>
+                            <label><input type="radio" name="q49" value="5"> Almost Always</label>
+                        </div>
+                    </div>
+                </div>
+         <!-- Auditory Processing Questions -->
+         <div class="question-group">
+            <h2>Auditory Processing</h2>
+
+            <!-- Question 50 -->
+            <div class="question">
+                <p>50. I hum, whistle, sing, or make other noises.</p>
+                <div class="options">
+                    <label><input type="radio" name="q50" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q50" value="2"> Seldom</label>
+                    <label><input type="radio" name="q50" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q50" value="4"> Frequently</label>
+                    <label><input type="radio" name="q50" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 51 -->
+            <div class="question">
+                <p>51. I startle easily at unexpected or loud noises (for example, vacuum cleaner, dog barking, telephone ringing).</p>
+                <div class="options">
+                    <label><input type="radio" name="q51" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q51" value="2"> Seldom</label>
+                    <label><input type="radio" name="q51" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q51" value="4"> Frequently</label>
+                    <label><input type="radio" name="q51" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 52 -->
+            <div class="question">
+                <p>52. I have trouble following what people are saying when they talk fast or about unfamiliar topics.</p>
+                <div class="options">
+                    <label><input type="radio" name="q52" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q52" value="2"> Seldom</label>
+                    <label><input type="radio" name="q52" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q52" value="4"> Frequently</label>
+                    <label><input type="radio" name="q52" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 53 -->
+            <div class="question">
+                <p>53. I leave the room when others are watching TV, or I ask them to turn it down.</p>
+                <div class="options">
+                    <label><input type="radio" name="q53" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q53" value="2"> Seldom</label>
+                    <label><input type="radio" name="q53" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q53" value="4"> Frequently</label>
+                    <label><input type="radio" name="q53" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 54 -->
+            <div class="question">
+                <p>54. I am distracted if there is a lot of noise around.</p>
+                <div class="options">
+                    <label><input type="radio" name="q54" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q54" value="2"> Seldom</label>
+                    <label><input type="radio" name="q54" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q54" value="4"> Frequently</label>
+                    <label><input type="radio" name="q54" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 55 -->
+            <div class="question">
+                <p>55. I don’t notice when my name is called.</p>
+                <div class="options">
+                    <label><input type="radio" name="q55" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q55" value="2"> Seldom</label>
+                    <label><input type="radio" name="q55" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q55" value="4"> Frequently</label>
+                    <label><input type="radio" name="q55" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 56 -->
+            <div class="question">
+                <p>56. I use strategies to drown out sound (for example, close the door, cover my ears, wear ear plugs).</p>
+                <div class="options">
+                    <label><input type="radio" name="q56" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q56" value="2"> Seldom</label>
+                    <label><input type="radio" name="q56" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q56" value="4"> Frequently</label>
+                    <label><input type="radio" name="q56" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 57 -->
+            <div class="question">
+                <p>57. I stay away from noisy settings.</p>
+                <div class="options">
+                    <label><input type="radio" name="q57" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q57" value="2"> Seldom</label>
+                    <label><input type="radio" name="q57" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q57" value="4"> Frequently</label>
+                    <label><input type="radio" name="q57" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 58 -->
+            <div class="question">
+                <p>58. I like to attend events with a lot of music.</p>
+                <div class="options">
+                    <label><input type="radio" name="q58" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q58" value="2"> Seldom</label>
+                    <label><input type="radio" name="q58" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q58" value="4"> Frequently</label>
+                    <label><input type="radio" name="q58" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 59 -->
+            <div class="question">
+                <p>59. I have to ask people to repeat things.</p>
+                <div class="options">
+                    <label><input type="radio" name="q59" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q59" value="2"> Seldom</label>
+                    <label><input type="radio" name="q59" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q59" value="4"> Frequently</label>
+                    <label><input type="radio" name="q59" value="5"> Almost Always</label>
+                </div>
+            </div>
+
+            <!-- Question 60 -->
+            <div class="question">
+                <p>60. I find it difficult to work with background noise (for example, fan, radio).</p>
+                <div class="options">
+                    <label><input type="radio" name="q60" value="1"> Almost Never</label>
+                    <label><input type="radio" name="q60" value="2"> Seldom</label>
+                    <label><input type="radio" name="q60" value="3"> Occasionally</label>
+                    <label><input type="radio" name="q60" value="4"> Frequently</label>
+                    <label><input type="radio" name="q60" value="5"> Almost Always</label>
+                </div>
+            </div>
+        </div>
+       
+ <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <!-- Summary Display Section -->
+    <div id="summary" style="display:none;">
+        <h2>Summary Score Sheet</h2>
+        <p><strong>Low Registration (Quadrant 1) Total:</strong> <span id="q1Total">0</span></p>
+        <p><strong>Sensation Seeking (Quadrant 2) Total:</strong> <span id="q2Total">0</span></p>
+        <p><strong>Sensory Sensitivity (Quadrant 3) Total:</strong> <span id="q3Total">0</span></p>
+        <p><strong>Sensation Avoiding (Quadrant 4) Total:</strong> <span id="q4Total">0</span></p>
+
+        <h3>Detailed Explanations:</h3>
+        <p><strong>Low Registration:</strong> Individuals may need more sensory input to react. Suggested modifications include increasing visual cues, using alarms for reminders, and providing tactile input tools.</p>
+        <p><strong>Sensation Seeking:</strong> Individuals enjoy sensory experiences and actively seek them out. Suggested modifications include allowing movement breaks, providing sensory-friendly tools, and engaging in sensory-rich activities.</p>
+        <p><strong>Sensory Sensitivity:</strong> Individuals may become easily overwhelmed by sensory stimuli. Suggested modifications include limiting overstimulating environments, providing quiet spaces, and adjusting sensory input levels.</p>
+        <p><strong>Sensation Avoiding:</strong> Individuals may seek to limit their exposure to sensory stimuli. Suggested modifications include respecting personal space, simplifying their environment, and using calming strategies.</p>
+
+        <button type="button" class="submit-btn" onclick="saveAndDownloadResponses()">Download Summary</button>
+    </div>
+
+    <script>
+        // Function to toggle the explanation textarea
+        function toggleExplanation(show) {
+            const explanationDiv = document.getElementById('explanation');
+            if (show) {
+                explanationDiv.style.display = 'block';
+                document.getElementById('explanationText').required = true;
+            } else {
+                explanationDiv.style.display = 'none';
+                document.getElementById('explanationText').required = false;
+            }
+        }
+
+        // Function to calculate and display the summary
+        function calculateSummary() {
+            const formData = new FormData(document.getElementById('sensoryProfileForm'));
+            const responses = {};
+            formData.forEach((value, key) => responses[key] = parseInt(value) || 0);
+
+            // Define questions by quadrant
+            const quadrant1Items = [3, 6, 12, 15, 21, 23, 36, 37, 39, 41, 44, 45, 52, 55, 59];
+            const quadrant2Items = [2, 4, 8, 10, 14, 17, 19, 28, 30, 32, 40, 42, 47, 50, 58];
+            const quadrant3Items = [7, 9, 13, 16, 20, 22, 25, 27, 31, 33, 34, 48, 51, 54, 60];
+            const quadrant4Items = [1, 5, 11, 18, 24, 26, 29, 35, 38, 43, 46, 49, 53, 56, 57];
+
+            // Calculate totals for each quadrant
+            const q1Total = quadrant1Items.reduce((total, q) => total + (responses[`q${q}`] || 0), 0);
+            const q2Total = quadrant2Items.reduce((total, q) => total + (responses[`q${q}`] || 0), 0);
+            const q3Total = quadrant3Items.reduce((total, q) => total + (responses[`q${q}`] || 0), 0);
+            const q4Total = quadrant4Items.reduce((total, q) => total + (responses[`q${q}`] || 0), 0);
+
+            // Display totals
+            document.getElementById('q1Total').textContent = q1Total;
+            document.getElementById('q2Total').textContent = q2Total;
+            document.getElementById('q3Total').textContent = q3Total;
+            document.getElementById('q4Total').textContent = q4Total;
+
+            document.getElementById('summary').style.display = 'block';
+        }
+
+        // Function to save and download the summary
+        function saveAndDownloadResponses() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const date = document.getElementById('date').value;
+
+            const summaryText = `Name: ${name}\nAge: ${age}\nDate: ${date}\n\n` +
+                `Summary Score Sheet\n\n` +
+                `Low Registration (Quadrant 1) Total: ${document.getElementById('q1Total').textContent}\n` +
+                `Sensation Seeking (Quadrant 2) Total: ${document.getElementById('q2Total').textContent}\n` +
+                `Sensory Sensitivity (Quadrant 3) Total: ${document.getElementById('q3Total').textContent}\n` +
+                `Sensation Avoiding (Quadrant 4) Total: ${document.getElementById('q4Total').textContent}\n\n` +
+                `Detailed Explanations:\n` +
+                `Low Registration: Individuals may need more sensory input to react.\n` +
+                `Sensation Seeking: Individuals enjoy sensory experiences and actively seek them out.\n` +
+                `Sensory Sensitivity: Individuals may become easily overwhelmed by sensory stimuli.\n` +
+                `Sensation Avoiding: Individuals may seek to limit their exposure to sensory stimuli.\n`;
+
+            const blob = new Blob([summaryText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'SensoryProfileSummary.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Handle form submission
+        document.getElementById('sensoryProfileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            calculateSummary();
+        });
+    </script>
+</body>
+</html>
