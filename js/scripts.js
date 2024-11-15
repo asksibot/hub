@@ -1,12 +1,14 @@
 // Function to fetch resources from JSON
 async function fetchResources(category) {
     try {
-        const response = await fetch(`library/${category}/resources.json`);
+        const response = await fetch(`../../library/${category}/resources.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        return data["parenting-children-autism-spectrum-resources"];
+        // Get the first key dynamically
+        const key = Object.keys(data)[0];
+        return data[key];
     } catch (error) {
         console.error('Error fetching the resources:', error);
         return [];
@@ -22,10 +24,15 @@ async function submitSurvey() {
         return;
     }
 
-    // Map survey options to JSON categories (adjust as needed)
+    // Map survey options to JSON categories
     const categoryMap = {
         'parent-guardian': 'parenting-children-autism-spectrum-resources',
-        'individual': 'individual-resources', // Example for other categories
+        'education-learning': 'education-learning',
+        'games-ideas': 'games-ideas',
+        'mental-health-healing': 'mental-health-healing',
+        'personal-growth-relationships': 'personal-growth-relationships',
+        'professional-development-business': 'professional-development-business',
+        'individual': 'individual-resources', // Ensure these directories and JSON files exist
         'neurodivergent': 'neurodivergent-resources',
         'caregiver': 'caregiver-resources',
         'therapist': 'therapist-resources',
@@ -80,30 +87,36 @@ function showModal(resources) {
             description.textContent = resource.description;
             listItem.appendChild(description);
 
-            // Add Amazon link if available
-            if (resource.amazon_link) {
-                const buyLink = document.createElement('a');
-                buyLink.href = resource.amazon_link;
-                buyLink.target = '_blank';
-                buyLink.textContent = 'Buy Now on Amazon';
-                buyLink.style.display = 'inline-block';
-                buyLink.style.marginTop = '10px';
-                buyLink.style.padding = '10px 15px';
-                buyLink.style.backgroundColor = '#ff9900';
-                buyLink.style.color = '#fff';
-                buyLink.style.textDecoration = 'none';
-                buyLink.style.borderRadius = '5px';
-                buyLink.style.transition = 'background-color 0.3s';
-                
-                buyLink.onmouseover = () => {
-                    buyLink.style.backgroundColor = '#cc7a00';
-                };
-                buyLink.onmouseout = () => {
-                    buyLink.style.backgroundColor = '#ff9900';
-                };
+            // CTA Buttons
+            const ctaDiv = document.createElement('div');
+            ctaDiv.classList.add('cta-buttons');
 
-                listItem.appendChild(buyLink);
+            // Buy Now Button
+            if (resource.amazon_link) {
+                const buyButton = document.createElement('button');
+                buyButton.classList.add('buy-now');
+                buyButton.textContent = 'Buy Now';
+                buyButton.onclick = () => window.open(resource.amazon_link, '_blank');
+                ctaDiv.appendChild(buyButton);
             }
+
+            // Read More Button
+            if (resource.readMore) {
+                const readMoreButton = document.createElement('button');
+                readMoreButton.classList.add('read-more');
+                readMoreButton.textContent = 'Read More';
+                readMoreButton.onclick = () => window.open(resource.readMore, '_blank');
+                ctaDiv.appendChild(readMoreButton);
+            }
+
+            // Wishlist Button
+            const wishlistButton = document.createElement('button');
+            wishlistButton.classList.add('wishlist');
+            wishlistButton.textContent = 'Add to Wishlist';
+            wishlistButton.onclick = () => addToWishlist(resource.title);
+            ctaDiv.appendChild(wishlistButton);
+
+            listItem.appendChild(ctaDiv);
 
             resourceList.appendChild(listItem);
         });
