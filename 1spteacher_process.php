@@ -83,3 +83,158 @@ function classifyScore($score) {
 
 $quadrant_classifications = array_map('classifyScore', $quadrants);
 $school_factor_classifications = array_map('classifyScore', $school_factors);
+// Interpretations for Sensory Profile
+$interpretations = [
+    "Sensitivity to Environment" => classifyScore($quadrants['Sensitivity']),
+    "Resilience and Adaptability" => classifyScore($school_factors['Factor 1 (Need for External Supports)']),
+    "Emotional Intensity" => classifyScore($quadrants['Avoiding']),
+    "Social Interaction" => classifyScore($school_factors['Factor 3 (Tolerance in Learning Environment)']),
+    "Stress Response" => classifyScore($school_factors['Factor 4 (Availability for Learning)'])
+];
+
+// Personalized comments based on classifications
+$comments = [
+    "Sensitivity to Environment" => [
+        "Much Less Than Others" => "You may not be easily affected by sensory stimuli.",
+        "Just Like the Majority of Others" => "You seem to have a balanced awareness.",
+        "Much More Than Others" => "You may be highly sensitive to environmental changes."
+    ],
+    "Resilience and Adaptability" => [
+        "Much Less Than Others" => "You may find it challenging to adjust to changes.",
+        "Just Like the Majority of Others" => "You demonstrate reasonable adaptability.",
+        "Much More Than Others" => "You adapt well to new situations."
+    ],
+    "Emotional Intensity" => [
+        "Much Less Than Others" => "You may not be easily affected by emotions.",
+        "Just Like the Majority of Others" => "You experience emotions with balance.",
+        "Much More Than Others" => "You may experience emotions intensely."
+    ],
+    "Social Interaction" => [
+        "Much Less Than Others" => "You may prefer solitude.",
+        "Just Like the Majority of Others" => "You enjoy social interactions while also valuing personal time.",
+        "Much More Than Others" => "You thrive in social environments."
+    ],
+    "Stress Response" => [
+        "Much Less Than Others" => "You manage stress well.",
+        "Just Like the Majority of Others" => "You experience stress in a balanced way.",
+        "Much More Than Others" => "You may experience heightened stress responses."
+    ]
+];
+
+// Generate personalized comments
+$personalized_comments = [];
+foreach ($interpretations as $category => $classification) {
+    $personalized_comments[$category] = $comments[$category][$classification] ?? "No specific comment available.";
+}
+// Insert into database
+$stmt = $conn->prepare("
+    INSERT INTO sensory_profile_responses (
+        submission_id, user_id, anon_token, firstName, lastName, birthDate, testDate, schoolName, 
+        examinerName, caregiverName, seeking_total, avoiding_total, sensitivity_total, 
+        registration_total, factor1_total, factor2_total, factor3_total, factor4_total, submission_date
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+");
+
+if (!$stmt) {
+    die(json_encode(["success" => false, "error" => "Database query preparation failed: " . $conn->error]));
+}
+
+$stmt->bind_param(
+    "sissssssssiiiiiii",
+    $submission_id, $user_id, $anon_token, $firstName, $lastName, $birthDate, $testDate, $schoolName, 
+    $examinerName, $caregiverName, $quadrants['Seeking'], $quadrants['Avoiding'], 
+    $quadrants['Sensitivity'], $quadrants['Registration'], 
+    $school_factors['Factor 1 (Need for External Supports)'], 
+    $school_factors['Factor 2 (Awareness and Attention)'], 
+    $school_factors['Factor 3 (Tolerance in Learning Environment)'], 
+    $school_factors['Factor 4 (Availability for Learning)']
+);
+
+// Execute the query and handle the response
+if ($stmt->execute()) {
+    echo json_encode([
+        "success" => true,
+        "submission_id" => $submission_id,
+        "quadrant_classifications" => $quadrant_classifications,
+        "school_factor_classifications" => $school_factor_classifications,
+        "interpretations" => $interpretations,
+        "comments" => $personalized_comments
+    ]);
+} else {
+    echo json_encode(["success" => false, "error" => $stmt->error]);
+}
+
+// Close statement and database connection
+$stmt->close();
+$conn->close();
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Quadrant Scores
+    const quadrantScores = <?= json_encode(array_values($quadrants)) ?>;
+    const schoolFactorScores = <?= json_encode(array_values($school_factors)) ?>;
+    
+    // Labels for charts
+    const quadrantLabels = ["Seeking", "Avoiding", "Sensitivity", "Registration"];
+    const schoolFactorLabels = [
+        "Need for External Supports",
+        "Awareness and Attention",
+        "Tolerance in Learning Environment",
+        "Availability for Learning"
+    ];
+
+    // Create Quadrant Chart
+    const quadrantCtx = document.getElementById("quadrantChart").getContext("2d");
+    new Chart(quadrantCtx, {
+        type: "bar",
+        data: {
+            labels: quadrantLabels,
+            datasets: [{
+                label: "Quadrant Scores",
+                data: quadrantScores,
+                backgroundColor: ["#007BFF", "#FF5733", "#28A745", "#FFC107"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 5 }
+                }
+            }
+        }
+    });
+
+    // Create School Factors Chart
+    const schoolFactorCtx = document.getElementById("schoolFactorChart").getContext("2d");
+    new Chart(schoolFactorCtx, {
+        type: "bar",
+        data: {
+            labels: schoolFactorLabels,
+            datasets: [{
+                label: "School Factor Scores",
+                data: schoolFactorScores,
+                backgroundColor: ["#17A2B8", "#6C757D", "#DC3545", "#FFC107"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 5 }
+                }
+            }
+        }
+    });
+});
+</script>
+
+<!-- HTML Canvas Elements for Charts -->
+<canvas id="quadrantChart" width="400" height="200"></canvas>
+<canvas id="schoolFactorChart" width="400" height="200"></canvas>
